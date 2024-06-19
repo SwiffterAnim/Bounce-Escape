@@ -25,6 +25,7 @@ public class PlayerMovementController : MonoBehaviour
         characterActions = new MyInputActions();
         characterActions.Enable();
 
+        //this asks to run this method OnDeviceChange when the device changes. Interesting concept.
         InputSystem.onDeviceChange += OnDeviceChange;
 
     }
@@ -43,12 +44,7 @@ public class PlayerMovementController : MonoBehaviour
         // Update input devices when a device is added or removed
         if (change == InputDeviceChange.Added || change == InputDeviceChange.Removed)
         {
-            foreach(var devices in InputSystem.devices){
-            if(devices is Gamepad){
-            gamepadIsConnected = true;
-            break;
-            }
-        }
+            gamepadIsConnected = device is Gamepad; //same as if(device is Gamepad){gamepadIsConnected = true;}
         }
     }
 
