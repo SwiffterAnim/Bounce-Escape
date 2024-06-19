@@ -25,14 +25,7 @@ public class PlayerMovementController : MonoBehaviour
         characterActions = new MyInputActions();
         characterActions.Enable();
 
-        // Checking if Gamepad is connected. Only does it at Start, so if gamepad is off, start play and THEN turn on gamepad, it will jump towards mouse.
-        // If starts with gamepad, then jumps with mouse, it explodes xD
-        foreach(var device in InputSystem.devices){
-            if(device is Gamepad){
-            gamepadIsConnected = true;
-            break;
-            }
-        }
+        InputSystem.onDeviceChange += OnDeviceChange;
 
     }
 
@@ -42,6 +35,20 @@ public class PlayerMovementController : MonoBehaviour
         if(!gamepadIsConnected)
         {
             UpdateAimWithMouse();
+        }
+    }
+
+    private void OnDeviceChange(InputDevice device, InputDeviceChange change)
+    {
+        // Update input devices when a device is added or removed
+        if (change == InputDeviceChange.Added || change == InputDeviceChange.Removed)
+        {
+            foreach(var devices in InputSystem.devices){
+            if(devices is Gamepad){
+            gamepadIsConnected = true;
+            break;
+            }
+        }
         }
     }
 
