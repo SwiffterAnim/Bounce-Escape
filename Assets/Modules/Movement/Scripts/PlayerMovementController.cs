@@ -15,6 +15,13 @@ public class PlayerMovementController : MonoBehaviour
     private MyInputActions characterActions;
 
     private Vector2 aim;
+    private bool canJump = true;
+
+
+    [SerializeField] GameObject testerColorBOX;
+    [SerializeField] Color on;
+    [SerializeField] Color off;
+    private Color boxColor;
 
 
     // Start is called before the first frame update
@@ -27,15 +34,19 @@ public class PlayerMovementController : MonoBehaviour
 
         //this asks to run this method OnDeviceChange when the device changes. Interesting concept.
         InputSystem.onDeviceChange += OnDeviceChange;
-
     }
 
     // Update is called once per frame
     void Update()
     {
+        // I'm trying to test if gamepadIsConnected is actually changing, but it doesn't look like it is.
         if(!gamepadIsConnected)
         {
-            UpdateAimWithMouse();
+            // UpdateAimWithMouse();
+            testerColorBOX.GetComponent<SpriteRenderer>().color = off;
+        }
+        else{
+            testerColorBOX.GetComponent<SpriteRenderer>().color = on;
         }
     }
 
@@ -68,6 +79,17 @@ public class PlayerMovementController : MonoBehaviour
         {
             aim.y = 1f;
         }
-        rb.AddForce(aim * jumpForce);
+        if (canJump)
+        {
+            rb.velocity = Vector2.zero;
+            rb.AddForce(aim * jumpForce);
+            canJump = false;
+        }
     }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        canJump = true;
+    }
+
 }
