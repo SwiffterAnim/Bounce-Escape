@@ -18,9 +18,9 @@ public class PlayerMovementController : MonoBehaviour
     private bool canJump = true;
 
 
-    [SerializeField] GameObject testerColorBOX;
-    [SerializeField] Color on;
-    [SerializeField] Color off;
+    [SerializeField] private GameObject testerColorBOX;
+    [SerializeField] private Color on;
+    [SerializeField] private Color off;
     private Color boxColor;
 
 
@@ -55,7 +55,7 @@ public class PlayerMovementController : MonoBehaviour
         // Update input devices when a device is added or removed
         if (change == InputDeviceChange.Added || change == InputDeviceChange.Removed)
         {
-            gamepadIsConnected = device is Gamepad; //same as if(device is Gamepad){gamepadIsConnected = true;}
+            gamepadIsConnected = device is Joystick; //same as if(device is Gamepad){gamepadIsConnected = true;}
         }
     }
 
