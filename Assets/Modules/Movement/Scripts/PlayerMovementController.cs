@@ -18,12 +18,6 @@ public class PlayerMovementController : MonoBehaviour
     private bool canJump = true;
 
 
-    [SerializeField] private GameObject testerColorBOX;
-    [SerializeField] private Color on;
-    [SerializeField] private Color off;
-    private Color boxColor;
-
-
     // Start is called before the first frame update
     void Start()
     {
@@ -43,10 +37,6 @@ public class PlayerMovementController : MonoBehaviour
         if(!gamepadIsConnected)
         {
             // UpdateAimWithMouse();
-            testerColorBOX.GetComponent<SpriteRenderer>().color = off;
-        }
-        else{
-            testerColorBOX.GetComponent<SpriteRenderer>().color = on;
         }
     }
 
@@ -75,12 +65,13 @@ public class PlayerMovementController : MonoBehaviour
 
     private void OnJump(InputValue value)
     {
-        if (aim == Vector2.zero)
-        {
-            aim.y = 1f;
-        }
+        rb.isKinematic = false;
         if (canJump)
         {
+            if (aim == Vector2.zero)
+            {
+                aim.y = 1f;
+            }
             rb.velocity = Vector2.zero;
             rb.AddForce(aim * jumpForce);
             canJump = false;
@@ -90,6 +81,20 @@ public class PlayerMovementController : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D other)
     {
         canJump = true;
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        canJump = true;
+        if (other.gameObject.TryGetComponent(out ObstacleEntity obstacle))
+        {
+            if (obstacle.hooknessActivated)
+            {
+                transform.position = Vector2.Lerp(other.gameObject.transform.position, transform.position, obstacle.attractionSpeed * Time.deltaTime);
+                rb.velocity = Vector2.zero;
+                rb.isKinematic = true;
+            }
+        }
     }
 
 }
