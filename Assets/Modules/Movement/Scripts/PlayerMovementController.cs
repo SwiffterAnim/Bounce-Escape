@@ -66,6 +66,7 @@ public class PlayerMovementController : MonoBehaviour
     private void OnJump(InputValue value)
     {
         rb.isKinematic = false;
+        rb.WakeUp();
         if (canJump)
         {
             if (aim == Vector2.zero)
@@ -92,7 +93,9 @@ public class PlayerMovementController : MonoBehaviour
             {
                 transform.position = Vector2.Lerp(other.gameObject.transform.position, transform.position, obstacle.attractionSpeed * Time.deltaTime);
                 rb.velocity = Vector2.zero;
+                rb.rotation = 0;
                 rb.isKinematic = true;
+                rb.Sleep();
             }
         }
     }

@@ -2020,6 +2020,7 @@ GameObject:
   - component: {fileID: 1065428934}
   - component: {fileID: 1065428935}
   - component: {fileID: 1065428936}
+  - component: {fileID: 1065428937}
   m_Layer: 0
   m_Name: PLAYER
   m_TagString: Untagged
@@ -2089,8 +2090,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 10
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 0.35009867, g: 0.8490566, b: 0.0040049935, a: 1}
+  m_Sprite: {fileID: 21300000, guid: dd7f3cd765f0946b2ad4ef2c2ccb27b5, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -2108,7 +2109,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1065428930}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.768, z: 0}
   m_LocalScale: {x: 0.4993846, y: 0.4993846, z: 0.4993846}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2174,6 +2175,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jumpForce: 1100
+--- !u!114 &1065428937
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1065428930}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99dca442371ec436b9b89ab5e10b7464, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  crackStages:
+  - {fileID: 21300000, guid: dd7f3cd765f0946b2ad4ef2c2ccb27b5, type: 3}
+  - {fileID: 21300000, guid: aa76dd63400d949bcb12c006d7ddd15c, type: 3}
+  - {fileID: 21300000, guid: 4f1c625586c9849d0871d753a5f33c5f, type: 3}
+  - {fileID: 21300000, guid: f49904fef2be2488e9a3829def676bbb, type: 3}
+  - {fileID: 21300000, guid: 773fe6a9620de451cb3777f1097e37b3, type: 3}
+  timeToRecoverShield: 3
 --- !u!4 &1083188840 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6025638826401154549, guid: bd8a23a62c81f4fb7891f9b772ef89f0, type: 3}
