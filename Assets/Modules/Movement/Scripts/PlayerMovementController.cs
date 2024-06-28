@@ -93,11 +93,21 @@ public class PlayerMovementController : MonoBehaviour
             {
                 transform.position = Vector2.Lerp(other.gameObject.transform.position, transform.position, obstacle.attractionSpeed * Time.deltaTime);
                 rb.velocity = Vector2.zero;
-                rb.rotation = 0;
                 rb.isKinematic = true;
                 rb.Sleep();
             }
         }
+    }
+
+
+    //Not sure if this should be here on this script.
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.gameObject.TryGetComponent(out ObstacleEntity obstacle))
+        {
+            obstacle.DeactivateHook();
+        }
+
     }
 
 }
