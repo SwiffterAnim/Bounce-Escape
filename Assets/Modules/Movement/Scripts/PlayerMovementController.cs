@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,11 +6,11 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovementController : MonoBehaviour
 {
-
     [SerializeField] private float jumpForce = 350f;
 
-    private bool gamepadIsConnected = false;
+    [SerializeField] private PlayerCollisionController playerCollisionController;
 
+    private bool gamepadIsConnected = false;
     private Camera mainCamera;
     private Rigidbody2D rb;
     private MyInputActions characterActions;
@@ -17,6 +18,15 @@ public class PlayerMovementController : MonoBehaviour
     private Vector2 aim;
     private bool canJump = true;
 
+    private void Awake()
+    {
+        playerCollisionController.OnCollisionEnter2DEvent += OnCollisionEnter2DEvent;
+    }
+
+    private void OnDestroy()
+    {
+        playerCollisionController.OnCollisionEnter2DEvent -= OnCollisionEnter2DEvent;
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -34,9 +44,9 @@ public class PlayerMovementController : MonoBehaviour
     void Update()
     {
         // I'm trying to test if gamepadIsConnected is actually changing, but it doesn't look like it is.
-        if(!gamepadIsConnected)
+        if (!gamepadIsConnected)
         {
-            // UpdateAimWithMouse();
+            UpdateAimWithMouse();
         }
     }
 
@@ -52,7 +62,7 @@ public class PlayerMovementController : MonoBehaviour
 
     private void UpdateAimWithMouse()
     {
-        Vector2 playerPosition = new Vector2 (transform.position.x, transform.position.y);
+        Vector2 playerPosition = new Vector2(transform.position.x, transform.position.y);
         Vector2 mousePositionScreen = mainCamera.ScreenToWorldPoint(Mouse.current.position.ReadValue());
         aim = mousePositionScreen - playerPosition;
         aim.Normalize();
@@ -73,15 +83,24 @@ public class PlayerMovementController : MonoBehaviour
             {
                 aim.y = 1f;
             }
+
             rb.velocity = Vector2.zero;
             rb.AddForce(aim * jumpForce);
             canJump = false;
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D other)
+    private void OnCollisionEnter2DEvent(Collision2D other)
     {
         canJump = true;
+        CameraManager.Instance.Shake();
+
+        // will change the position of "other" everywhere
+        other.transform.position = Vector3.down;
+
+        // won't change the position of "other"
+        Vector3 otherPosition = other.transform.position;
+        otherPosition = Vector3.down;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -91,7 +110,8 @@ public class PlayerMovementController : MonoBehaviour
         {
             if (obstacle.hooknessActivated)
             {
-                transform.position = Vector2.Lerp(other.gameObject.transform.position, transform.position, obstacle.attractionSpeed * Time.deltaTime);
+                transform.position = Vector2.Lerp(other.gameObject.transform.position, transform.position,
+                    obstacle.attractionSpeed * Time.deltaTime);
                 rb.velocity = Vector2.zero;
                 rb.isKinematic = true;
                 rb.Sleep();
@@ -105,9 +125,7 @@ public class PlayerMovementController : MonoBehaviour
     {
         if (other.gameObject.TryGetComponent(out ObstacleEntity obstacle))
         {
-            obstacle.DeactivateHook();
+            // obstacle.DeactivateHook();
         }
-
     }
-
 }
