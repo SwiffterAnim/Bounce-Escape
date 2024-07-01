@@ -47,7 +47,7 @@ public class PlayerMovementController : MonoBehaviour
         // I'm trying to test if gamepadIsConnected is actually changing, but it doesn't look like it is.
         if(!gamepadIsConnected)
         {
-            // UpdateAimWithMouse();
+            UpdateAimWithMouse();
         }
     }
 
