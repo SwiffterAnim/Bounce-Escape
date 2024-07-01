@@ -7,6 +7,7 @@ public class PlayerMovementController : MonoBehaviour
 {
 
     [SerializeField] private float jumpForce = 350f;
+    [SerializeField] private PlayerCollisionController playerCollisionController;
 
     private bool gamepadIsConnected = false;
 
@@ -18,7 +19,17 @@ public class PlayerMovementController : MonoBehaviour
     private bool canJump = true;
 
 
-    // Start is called before the first frame update
+    private void Awake()
+    {
+        playerCollisionController.OnCollisionEnter2DEvent += OnCollisionEnter2DEvent;
+  
+    }
+
+    private void OnDestroy()
+    {
+        playerCollisionController.OnCollisionEnter2DEvent -= OnCollisionEnter2DEvent;
+    }
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -79,9 +90,10 @@ public class PlayerMovementController : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D other)
+    private void OnCollisionEnter2DEvent(Collision2D other)
     {
         canJump = true;
+        CameraManager.Instance.Shake();
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -103,7 +115,7 @@ public class PlayerMovementController : MonoBehaviour
     //Not sure if this should be here on this script.
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.gameObject.TryGetComponent(out ObstacleEntity obstacle))
+        if (other.gameObject.TryGetComponent(out ObstacleHookController obstacle))
         {
             obstacle.DeactivateHook();
         }

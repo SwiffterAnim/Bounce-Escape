@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6025638826401154548}
   - component: {fileID: 6025638826401154551}
   - component: {fileID: 6025638826401154546}
+  - component: {fileID: -4790127276102507831}
   m_Layer: 0
   m_Name: Hook
   m_TagString: Untagged
@@ -98,6 +99,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 780bcf1039f3248d18e1776f317c8c06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  reactivateHookAfter: 5
   hooknessActivated: 1
   attractionSpeed: 3
 --- !u!58 &6025638826401154546
@@ -116,3 +118,16 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!114 &-4790127276102507831
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6025638826401154550}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e17957b809b45435685ddaadf82f0384, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  obstacleEntity: {fileID: 6025638826401154551}

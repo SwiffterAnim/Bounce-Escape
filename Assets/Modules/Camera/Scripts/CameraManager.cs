@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class CameraManager : MonoBehaviour
 {
+    public static CameraManager Instance;
+
+
     private Camera mainCam;
     [SerializeField] private float shakeAmmount= 0.02f;
     [SerializeField] private float shakeFrequency = 0.003f;
@@ -14,6 +17,14 @@ public class CameraManager : MonoBehaviour
         if (mainCam == null)
         {
             mainCam = Camera.main;
+        }
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
         }
     }
 
@@ -41,6 +52,6 @@ public class CameraManager : MonoBehaviour
     void StopShake()
     {
         CancelInvoke("DoShake");
-        mainCam.transform.localPosition = Vector3.zero;
+        mainCam.transform.localPosition = new Vector3(0, 0, -10);
     }
 }
