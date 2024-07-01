@@ -7,6 +7,7 @@ public class PlayerMovementController : MonoBehaviour
 {
 
     [SerializeField] private float jumpForce = 350f;
+    [SerializeField] private PlayerCollisionController playerCollisionController;
 
     private bool gamepadIsConnected = false;
 
@@ -18,7 +19,17 @@ public class PlayerMovementController : MonoBehaviour
     private bool canJump = true;
 
 
-    // Start is called before the first frame update
+    private void Awake()
+    {
+        playerCollisionController.OnCollisionEnter2DEvent += OnCollisionEnter2DEvent;
+  
+    }
+
+    private void OnDestroy()
+    {
+        playerCollisionController.OnCollisionEnter2DEvent -= OnCollisionEnter2DEvent;
+    }
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -36,7 +47,7 @@ public class PlayerMovementController : MonoBehaviour
         // I'm trying to test if gamepadIsConnected is actually changing, but it doesn't look like it is.
         if(!gamepadIsConnected)
         {
-            // UpdateAimWithMouse();
+            UpdateAimWithMouse();
         }
     }
 
@@ -66,6 +77,7 @@ public class PlayerMovementController : MonoBehaviour
     private void OnJump(InputValue value)
     {
         rb.isKinematic = false;
+        rb.WakeUp();
         if (canJump)
         {
             if (aim == Vector2.zero)
@@ -78,9 +90,10 @@ public class PlayerMovementController : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D other)
+    private void OnCollisionEnter2DEvent(Collision2D other)
     {
         canJump = true;
+        CameraManager.Instance.Shake();
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -93,8 +106,20 @@ public class PlayerMovementController : MonoBehaviour
                 transform.position = Vector2.Lerp(other.gameObject.transform.position, transform.position, obstacle.attractionSpeed * Time.deltaTime);
                 rb.velocity = Vector2.zero;
                 rb.isKinematic = true;
+                rb.Sleep();
             }
         }
+    }
+
+
+    //Not sure if this should be here on this script.
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.gameObject.TryGetComponent(out ObstacleHookController obstacle))
+        {
+            obstacle.DeactivateHook();
+        }
+
     }
 
 }
