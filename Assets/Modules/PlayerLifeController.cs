@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerLifeManager : MonoBehaviour
+public class PlayerLifeController : MonoBehaviour
 {
     [SerializeField] private PlayerCollisionController playerCollisionController;
     [SerializeField] private PlayerVisualController playerVisualController;
+    [SerializeField] private PlayerMovementController playerMovementController;
     [SerializeField] float timeToRecoverShield = 3f;
 
     private Rigidbody2D rb;
@@ -20,17 +21,11 @@ public class PlayerLifeManager : MonoBehaviour
     {
         playerCollisionController.OnCollisionEnter2DEvent += OnCollisionEnter2DEvent;
 
-        if(!gameObject.GetComponent<PlayerMovementController>().enabled)
+        if(!playerMovementController.enabled)
         {
-            gameObject.GetComponent<PlayerMovementController>().enabled = true;
+            playerMovementController.EnableInput();
+            playerMovementController.enabled = true;
         }
-        
-        /*
-        if(!gameObject.TryGetComponent(out PlayerMovementController playerMovement))
-        {
-            gameObject.AddComponent<PlayerMovementController>();
-        }
-        */
     }
     private void OnDestroy()
     {
@@ -87,9 +82,8 @@ public class PlayerLifeManager : MonoBehaviour
 
     private void Die()
     {
-        gameObject.GetComponent<PlayerMovementController>().enabled = false;
-        //Somehow this (below) works...
-        // Destroy(GetComponent<PlayerMovementController>());
+        playerMovementController.DisableInput();
+        playerMovementController.enabled = false;
         isAlive = false;
         rb.WakeUp();
         rb.isKinematic = false;

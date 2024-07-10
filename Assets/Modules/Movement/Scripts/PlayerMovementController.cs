@@ -8,6 +8,8 @@ public class PlayerMovementController : MonoBehaviour
 
     [SerializeField] private float jumpForce = 350f;
     [SerializeField] private PlayerCollisionController playerCollisionController;
+    [SerializeField] private PlayerLifeController playerLifeController;
+    [SerializeField] private PlayerInput playerInput;
 
     private bool gamepadIsConnected = false;
 
@@ -41,13 +43,12 @@ public class PlayerMovementController : MonoBehaviour
         InputSystem.onDeviceChange += OnDeviceChange;
     }
 
-    // Update is called once per frame
     void Update()
     {
         // I'm trying to test if gamepadIsConnected is actually changing, but it doesn't look like it is.
         if(!gamepadIsConnected)
         {
-            UpdateAimWithMouse();
+            //UpdateAimWithMouse();
         }
     }
 
@@ -92,17 +93,21 @@ public class PlayerMovementController : MonoBehaviour
 
     private void OnCollisionEnter2DEvent(Collision2D other)
     {
-        canJump = true;
-        CameraManager.Instance.Shake();
+        if(playerLifeController.isAlive)
+        {
+            canJump = true;
+            CameraManager.Instance.Shake();
+        }
+        
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        canJump = true;
         if (other.gameObject.TryGetComponent(out ObstacleEntity obstacle))
         {
-            if (obstacle.hooknessActivated)
+            if (obstacle.hooknessActivated && playerLifeController.isAlive)
             {
+                canJump = true;
                 transform.position = Vector2.Lerp(other.gameObject.transform.position, transform.position, obstacle.attractionSpeed * Time.deltaTime);
                 rb.velocity = Vector2.zero;
                 rb.isKinematic = true;
@@ -115,11 +120,23 @@ public class PlayerMovementController : MonoBehaviour
     //Not sure if this should be here on this script.
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.gameObject.TryGetComponent(out ObstacleHookController obstacle))
+        if (other.gameObject.TryGetComponent(out ObstacleHookController obstacle) && playerLifeController.isAlive)
         {
             obstacle.DeactivateHook();
         }
 
+    }
+
+    public void DisableInput()
+    {
+        characterActions.Disable();
+        playerInput.actions.Disable();
+    }
+
+    public void EnableInput()
+    {
+        characterActions.Enable();
+        playerInput.actions.Enable();
     }
 
 }

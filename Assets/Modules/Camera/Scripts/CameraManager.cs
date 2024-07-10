@@ -34,7 +34,7 @@ public class CameraManager : MonoBehaviour
         Invoke("StopShake", shakeLength);
     }
 
-    void DoShake()
+    private void DoShake()
     {
         if(shakeAmmount > 0)
         {
@@ -49,7 +49,7 @@ public class CameraManager : MonoBehaviour
         }
     }
 
-    void StopShake()
+    private void StopShake()
     {
         CancelInvoke("DoShake");
         mainCam.transform.localPosition = new Vector3(0, 0, -10);

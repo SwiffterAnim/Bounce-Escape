@@ -2537,6 +2537,7 @@ MonoBehaviour:
   playerCollisionController: {fileID: 1065428938}
   playerVisualController: {fileID: 1065428937}
   timeToRecoverShield: 3
+  isAlive: 0
 --- !u!4 &1083188840 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6025638826401154549, guid: bd8a23a62c81f4fb7891f9b772ef89f0, type: 3}
