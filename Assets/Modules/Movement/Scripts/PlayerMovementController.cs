@@ -10,6 +10,7 @@ public class PlayerMovementController : MonoBehaviour
     [SerializeField] private PlayerCollisionController playerCollisionController;
     [SerializeField] private PlayerLifeController playerLifeController;
     [SerializeField] private PlayerInput playerInput;
+    [SerializeField] private TimeManager timeManager;
 
     private bool gamepadIsConnected = false;
 
@@ -77,6 +78,7 @@ public class PlayerMovementController : MonoBehaviour
 
     private void OnJump(InputValue value)
     {
+        timeManager.CancelSlowMotion();
         rb.isKinematic = false;
         rb.WakeUp();
         if (canJump)

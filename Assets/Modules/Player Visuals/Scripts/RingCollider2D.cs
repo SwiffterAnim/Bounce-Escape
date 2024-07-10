@@ -4,13 +4,12 @@ using UnityEngine;
 
 public class RingCollider2D : MonoBehaviour
 {
-    [SerializeField] int numSegments = 16;
-    [SerializeField] float outterRadius = 5f; //not sure what these radius are.
-    [SerializeField] float colliderThickness = 3f; //again not sure what these are.
+    [SerializeField] private int numSegments = 16;
+    [SerializeField] private float outterRadius = 5f; //not sure what these radius are.
+    [SerializeField] private float colliderThickness = 3f; //again not sure what these are.
 
 
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         EdgeCollider2D edgeCollider = GetComponent<EdgeCollider2D>();
         Vector2[] points = new Vector2[(numSegments+1)];

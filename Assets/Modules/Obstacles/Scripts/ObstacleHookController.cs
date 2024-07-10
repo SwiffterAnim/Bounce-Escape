@@ -14,13 +14,8 @@ public class ObstacleHookController : MonoBehaviour
     {
         sr = GetComponent<SpriteRenderer>();
     }
-    
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
+
     void Update()
     {
         if (!obstacleEntity.hooknessActivated)
