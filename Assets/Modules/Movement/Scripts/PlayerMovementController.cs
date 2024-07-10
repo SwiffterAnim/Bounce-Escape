@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,8 +6,9 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovementController : MonoBehaviour
 {
+    public event Action<InputValue> OnAimEvent;
 
-    [SerializeField] private float jumpForce = 350f;
+    public float jumpForce = 350f;
     [SerializeField] private PlayerCollisionController playerCollisionController;
     [SerializeField] private PlayerLifeController playerLifeController;
     [SerializeField] private PlayerInput playerInput;
@@ -19,7 +21,7 @@ public class PlayerMovementController : MonoBehaviour
     private MyInputActions characterActions;
 
     private Vector2 aim;
-    private bool canJump = true;
+    public bool canJump = true;
 
 
     private void Awake()
@@ -73,6 +75,7 @@ public class PlayerMovementController : MonoBehaviour
 
     private void OnAim(InputValue value)
     {
+        OnAimEvent?.Invoke(value);
         aim = value.Get<Vector2>();
     }
 
@@ -87,8 +90,14 @@ public class PlayerMovementController : MonoBehaviour
             {
                 aim.y = 1f;
             }
+            if( -0.1 < aim.x && aim.x < 0.1 && -0.1 < aim.y && aim.y < 0.1)
+            {
+                // this is just correction the issue that the joystick when let go, doesn't go exactly to 0. Mechanical problem.
+                aim = Vector2.zero;
+                aim.y = 1f;
+            }
             rb.velocity = Vector2.zero;
-            rb.AddForce(aim * jumpForce);
+            rb.AddForce(aim.normalized * jumpForce);
             canJump = false;
         }
     }
