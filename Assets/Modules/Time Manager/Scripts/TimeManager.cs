@@ -4,29 +4,28 @@ using UnityEngine;
 
 public class TimeManager : MonoBehaviour
 {
+    public static TimeManager Instance;
+
     [SerializeField] private float slowDownFactor = 0.05f;
     [SerializeField] private float slowDownLength = 2f;
     [SerializeField] private float timeToNormalSpeed = 1f;
     [SerializeField] private float tempTimer = 0;
-
-    [SerializeField] private PlayerCollisionController playerCollisionController;
-    [SerializeField] private PlayerLifeController playerLifeController;
+    
 
     private bool isSlowedDown = false;
 
 
     private void Awake()
     {
-        playerCollisionController.OnCollisionEnter2DEvent += OnCollisionEnter2DEvent;
-  
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
-
-    private void OnDestroy()
-    {
-        playerCollisionController.OnCollisionEnter2DEvent -= OnCollisionEnter2DEvent;
-    }
-
-
 
     void Update()
     {
@@ -71,11 +70,4 @@ public class TimeManager : MonoBehaviour
         isSlowedDown = false;
     }
 
-    private void OnCollisionEnter2DEvent(Collision2D other)
-    {
-        if(playerLifeController.isAlive)
-        {
-            DoSlowMotion();
-        }
-    }
 }

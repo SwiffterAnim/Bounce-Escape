@@ -2,22 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class ProjectileSpawnController : MonoBehaviour
 {
     [SerializeField] private GameObject projectile;
     [SerializeField] private float timeToShoot = 3;
-    // private ProjectileEntity projectileEntity;
-
-    
-    private GameObject player;
+        
+    private Vector3 playerPosition;
     private float timer = 0;
-    
-
-    private void Start()
-    {
-        player = GameObject.FindGameObjectWithTag("Player"); //want to find a better way to get player.
-    }
 
    
    private void Update()
@@ -35,10 +28,11 @@ public class ProjectileSpawnController : MonoBehaviour
     private void Shoot()
     {
         GameObject instantiatedProjectile = Instantiate(projectile, gameObject.transform.position, Quaternion.identity);
-        Rigidbody2D projectileRB = instantiatedProjectile.GetComponent<Rigidbody2D>();
         ProjectileEntity projectileEntity = instantiatedProjectile.GetComponent<ProjectileEntity>();
+        Rigidbody2D projectileRB = projectileEntity.rb;
         
-        Vector3 direction = player.transform.position - transform.position;
+        playerPosition = PlayerManager.Instance.GetPlayerPosition();
+        Vector3 direction = playerPosition - transform.position;
         Vector2 directionProjectile = new Vector2 (direction.x, direction.y).normalized * projectileEntity.projectileSpeed;
         projectileRB.velocity = directionProjectile;
     }

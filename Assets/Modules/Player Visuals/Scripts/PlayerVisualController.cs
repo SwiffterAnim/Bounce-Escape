@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class PlayerVisualController : MonoBehaviour
 {
-    [SerializeField] Sprite[] crackStages;
+    public Sprite[] crackStages;
     
     private SpriteRenderer sr;
 

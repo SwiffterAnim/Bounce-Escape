@@ -11,11 +11,13 @@ public class PlayerLifeController : MonoBehaviour
     [SerializeField] float timeToRecoverShield = 3f;
 
     private Rigidbody2D rb;
+    private ObstacleEntity obstacleEntity;
 
     public bool isAlive;
 
     private float recoveryTimer = 0;
     private int crackIndex;
+    private int numberOfCrackedSprites;
 
     private void Awake()
     {
@@ -32,15 +34,16 @@ public class PlayerLifeController : MonoBehaviour
         playerCollisionController.OnCollisionEnter2DEvent -= OnCollisionEnter2DEvent;    
     }
 
-    // Start is called before the first frame update
+    
     void Start()
     {
         crackIndex = 0;
         isAlive = true;
         rb = GetComponent<Rigidbody2D>();
+        numberOfCrackedSprites = playerVisualController.crackStages.Length - 1;
     }
 
-    // Update is called once per frame
+    
     void Update()
     {
         if(isAlive)
@@ -51,8 +54,26 @@ public class PlayerLifeController : MonoBehaviour
 
     private void OnCollisionEnter2DEvent(Collision2D other)
     {
+
+        if (other.gameObject.TryGetComponent<ObstacleEntity>(out obstacleEntity))
+        {
+            if (obstacleEntity.doesDamage && isAlive)
+            {
+                TakeDamage();
+            }
+            if (obstacleEntity.isDestroyableAfterImpact)
+            {
+                Destroy(other.gameObject);
+            }
+        }
+
+    }
+
+    private void TakeDamage()
+    {
+        TimeManager.Instance.DoSlowMotion();
         recoveryTimer = 0;
-        if (crackIndex < 4 && isAlive)
+        if (crackIndex < numberOfCrackedSprites)
         {
             crackIndex++;
             playerVisualController.CrackCristalBall(crackIndex);
@@ -60,7 +81,7 @@ public class PlayerLifeController : MonoBehaviour
 
         //TO CHANGE: For now I'll do if you take another damage after being on minimum shield, you die.
 
-        if (crackIndex >= 4 && isAlive)
+        if (crackIndex >= numberOfCrackedSprites)
         {
             Die();
         }
