@@ -8,6 +8,7 @@ public class PlayerLifeController : MonoBehaviour
     [SerializeField] private PlayerCollisionController playerCollisionController;
     [SerializeField] private PlayerVisualController playerVisualController;
     [SerializeField] private PlayerMovementController playerMovementController;
+    [SerializeField] private ParticleSystem ps;
     [SerializeField] float timeToRecoverShield = 3f;
 
     private Rigidbody2D rb;
@@ -63,7 +64,7 @@ public class PlayerLifeController : MonoBehaviour
             }
             if (obstacleEntity.isDestroyableAfterImpact)
             {
-                Destroy(other.gameObject);
+                Destroy(other.gameObject); //I think I should destroy this object on the ProjectileDestroyController... But I don't know how hehe
             }
         }
 
@@ -72,6 +73,7 @@ public class PlayerLifeController : MonoBehaviour
     private void TakeDamage()
     {
         TimeManager.Instance.DoSlowMotion();
+        ps.Play();
         recoveryTimer = 0;
         if (crackIndex < numberOfCrackedSprites)
         {

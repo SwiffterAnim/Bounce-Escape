@@ -22,6 +22,7 @@ public class PlayerMovementController : MonoBehaviour
 
     private Vector2 aim;
     public bool canJump = true;
+    public bool isHooked = false;
 
 
     private void Awake()
@@ -106,6 +107,28 @@ public class PlayerMovementController : MonoBehaviour
     {
         if(playerLifeController.isAlive)
         {
+            if (other.gameObject.TryGetComponent(out ObstacleEntity obstacle))
+            {
+                if(!obstacle.isWall)
+                {
+                    Vector2 projectileVelocity = other.rigidbody.velocity.normalized;
+                    //I'm failing at getting the projectile's velocity...
+                    if(isHooked)
+                    {
+                        rb.isKinematic = false;
+                        rb.WakeUp();
+                        isHooked = false;
+                    }
+                    else
+                    {
+                        rb.velocity = Vector2.zero;
+                    }
+                    
+                    rb.AddForce(projectileVelocity * jumpForce);
+                }   
+            }
+
+            
             canJump = true;
             CameraManager.Instance.Shake();
         }
@@ -118,6 +141,7 @@ public class PlayerMovementController : MonoBehaviour
         {
             if (obstacle.hooknessActivated && playerLifeController.isAlive)
             {
+                isHooked = true;
                 canJump = true;
                 transform.position = Vector2.Lerp(other.gameObject.transform.position, transform.position, obstacle.attractionSpeed * Time.deltaTime);
                 rb.velocity = Vector2.zero;
@@ -131,6 +155,7 @@ public class PlayerMovementController : MonoBehaviour
     //Not sure if this should be here on this script.
     private void OnTriggerExit2D(Collider2D other)
     {
+        isHooked = false;
         if (other.gameObject.TryGetComponent(out ObstacleHookController obstacle) && playerLifeController.isAlive)
         {
             obstacle.DeactivateHook();

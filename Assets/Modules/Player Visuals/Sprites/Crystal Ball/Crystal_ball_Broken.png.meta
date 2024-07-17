@@ -1,0 +1,612 @@
+fileFormatVersion: 2
+guid: e1b2f9fd414a24dc0976a006582906ea
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 190
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: 0
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Crystal_ball_Broken_0
+      rect:
+        serializedVersion: 2
+        x: 31
+        y: 270
+        width: 91
+        height: 95
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 14.195084, y: 46.278625}
+        - {x: -8.4361725, y: 37.240967}
+        - {x: -35.118206, y: 16.858795}
+        - {x: -44.27861, y: 5.9737244}
+        - {x: -45.11013, y: -11.115601}
+        - {x: -29.424313, y: -19.100098}
+        - {x: -12.401184, y: -24.927399}
+        - {x: 12.591476, y: -45.973267}
+        - {x: 27.171677, y: -38.05722}
+        - {x: 30.149094, y: -19.725494}
+        - {x: 40.309105, y: 9.026733}
+        - {x: 44.278618, y: 24.118195}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b32d445bdc2be4676978d58db9b09c4c
+      internalID: -947166601
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Crystal_ball_Broken_1
+      rect:
+        serializedVersion: 2
+        x: 171
+        y: 296
+        width: 71
+        height: 81
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 11.737015, y: 37.518616}
+        - {x: -8.817581, y: 40.030975}
+        - {x: -33.36258, y: 38.36258}
+        - {x: -5.082794, y: 13.864349}
+        - {x: -15.031525, y: 6.2137146}
+        - {x: -13.209686, y: -11.484528}
+        - {x: -2.5914764, y: -38.36258}
+        - {x: 23.393066, y: -36.22516}
+        - {x: 25.423553, y: -10.400574}
+        - {x: 34.134796, y: 6.658325}
+        - {x: 33.667923, y: 29.812866}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bc0c2ea8100f54002a8092fe5a09a017
+      internalID: 1190554977
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Crystal_ball_Broken_2
+      rect:
+        serializedVersion: 2
+        x: 278
+        y: 279
+        width: 66
+        height: 103
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 5.045929, y: 49.36258}
+        - {x: -0.8265991, y: 38.42798}
+        - {x: -2.7815552, y: 11.696991}
+        - {x: -10.709686, y: -9.156647}
+        - {x: -33, y: -19.202148}
+        - {x: -7.564728, y: -49.36258}
+        - {x: 4.460205, y: -28.166962}
+        - {x: 28.11444, y: -35.31662}
+        - {x: 24.75882, y: -7.671509}
+        - {x: 10.833954, y: 3.7419434}
+        - {x: 32.389313, y: 30.125732}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1678bc59904aa4dd6866f6abcd23e78c
+      internalID: -1870965066
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Crystal_ball_Broken_10
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 242
+        width: 42
+        height: 22
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -18.55722, y: 6.946533}
+        - {x: 4.633667, y: -9.167923}
+        - {x: 15.809113, y: -9.496246}
+        - {x: 19.473267, y: 7.946533}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f96ca8161ea454261aa5025336187e03
+      internalID: -1236209524
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Crystal_ball_Broken_4
+      rect:
+        serializedVersion: 2
+        x: 158
+        y: 161
+        width: 91
+        height: 89
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 24.239365, y: 27.899048}
+        - {x: 10.308914, y: 44.32048}
+        - {x: -8.485077, y: 26.821335}
+        - {x: 1.4978638, y: 9.702881}
+        - {x: -13.503571, y: 0.33576965}
+        - {x: -27.487778, y: 12.496597}
+        - {x: -45.013214, y: -19.660675}
+        - {x: -44.73961, y: -29.762207}
+        - {x: -26.820679, y: -42.8322}
+        - {x: 0.60061646, y: -25.789413}
+        - {x: 16.652573, y: -23.041504}
+        - {x: 34.834244, y: -36.16101}
+        - {x: 43.8322, y: -29.825424}
+        - {x: 45.5, y: -15.847122}
+        - {x: 35.501358, y: 8.809143}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 850cb308a5e3140919283c51d2b91bfd
+      internalID: 506243458
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Crystal_ball_Broken_5
+      rect:
+        serializedVersion: 2
+        x: 315
+        y: 159
+        width: 50
+        height: 111
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 3}
+      outline:
+      - - {x: -1.0040588, y: 52.831512}
+        - {x: -20.997284, y: 40.823395}
+        - {x: -25, y: 28.571732}
+        - {x: -22.76883, y: 19.279877}
+        - {x: -8.485962, y: 7.2806244}
+        - {x: -10.758392, y: -11.604767}
+        - {x: -3.9792175, y: -24.147446}
+        - {x: 2.6521606, y: -36.375183}
+        - {x: -8.3220215, y: -50.16304}
+        - {x: 14.661682, y: -52.49797}
+        - {x: 21.664398, y: -20.486435}
+        - {x: 20.53659, y: 6.8934174}
+        - {x: 10.990509, y: 33.50949}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 957b30817713045cb83807e430ce2a59
+      internalID: 1222284238
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Crystal_ball_Broken_3
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 170
+        width: 58
+        height: 71
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 13.663727, y: 17.831528}
+        - {x: 1.3260994, y: 10.491852}
+        - {x: -13.003384, y: 15.152878}
+        - {x: -15.99118, y: 34.1678}
+        - {x: -24.140621, y: 19.976181}
+        - {x: -27.665764, y: 4.8457794}
+        - {x: -22.54396, y: -4.0968323}
+        - {x: -9.324749, y: -15.82135}
+        - {x: -7.3288116, y: -26.493896}
+        - {x: 11.658302, y: -34.499313}
+        - {x: 18.993217, y: -28.174591}
+        - {x: 27.332207, y: -4.8403473}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1e1bcc683ef4e4981b65e7501bb0afcf
+      internalID: -1968693142
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Crystal_ball_Broken_6
+      rect:
+        serializedVersion: 2
+        x: 23
+        y: 38
+        width: 106
+        height: 111
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 42.233208, y: 16.696815}
+        - {x: 32.800636, y: 7.5580215}
+        - {x: 20.102852, y: 11.089134}
+        - {x: 9.887726, y: 3.3787155}
+        - {x: 11.043694, y: -9.0449295}
+        - {x: -3.0345917, y: -1.6451569}
+        - {x: -11.709877, y: 7.8923264}
+        - {x: -12.600445, y: 18.196167}
+        - {x: -31.084618, y: 24.551056}
+        - {x: -31.667118, y: 35.819992}
+        - {x: -50.331524, y: 53.8322}
+        - {x: -52.666443, y: 22.523743}
+        - {x: -44.003475, y: -5.129944}
+        - {x: -33.01152, y: -24.81253}
+        - {x: -16.661968, y: -41.92073}
+        - {x: 1.3261032, y: -53.498646}
+        - {x: 9.818176, y: -47.240726}
+        - {x: 11.986435, y: -36.165764}
+        - {x: 28.542488, y: -31.176907}
+        - {x: 34.32067, y: -16.502037}
+        - {x: 52.16043, y: -7.7600937}
+        - {x: 49.664413, y: 16.495926}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2efe32eda7a63495ca49ceef4f260fd3
+      internalID: 1311550280
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Crystal_ball_Broken_7
+      rect:
+        serializedVersion: 2
+        x: 146
+        y: 34
+        width: 108
+        height: 77
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 26.034042, y: 20.90847}
+        - {x: 22.629395, y: 32.21499}
+        - {x: 12.125656, y: 26.482803}
+        - {x: -3.32135, y: 38.5}
+        - {x: -2.3420563, y: 19.448456}
+        - {x: -17.93991, y: 10.53199}
+        - {x: -24.133896, y: -2.7213974}
+        - {x: -40.324066, y: -8.4938965}
+        - {x: -51.665085, y: -27.158978}
+        - {x: -33.961975, y: -34.203262}
+        - {x: -6.6935577, y: -37.16576}
+        - {x: 22.645416, y: -32.169834}
+        - {x: 30.720917, y: -21.97482}
+        - {x: 30.041199, y: -7.342453}
+        - {x: 47.023987, y: -3.09581}
+        - {x: 51.998642, y: 18.82949}
+        - {x: 41.34102, y: 28.159653}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5a9aa283bfee140828446db2a88f9454
+      internalID: -978931686
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Crystal_ball_Broken_8
+      rect:
+        serializedVersion: 2
+        x: 307
+        y: 17
+        width: 58
+        height: 102
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -16.32544, y: 50.666435}
+        - {x: -27.332184, y: 28.660332}
+        - {x: -26.870972, y: 4.561531}
+        - {x: -13.375946, y: 8.1458435}
+        - {x: 1.513031, y: -0.49922943}
+        - {x: -5.815796, y: -21.631508}
+        - {x: -18.287811, y: -25.817928}
+        - {x: -21.752106, y: -42.02928}
+        - {x: -27.332214, y: -49.332203}
+        - {x: -8.332886, y: -39.99254}
+        - {x: 11.988464, y: -21.998642}
+        - {x: 26.725128, y: -0.13510132}
+        - {x: 16.770721, y: 11.857903}
+        - {x: 16.991852, y: 31.66101}
+        - {x: 1.6643982, y: 46.663727}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a1ad989a41f8b45f6b20983a7e08e647
+      internalID: 1842538815
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline:
+    - - {x: 120.42984, y: -81.35747}
+      - {x: 107.94684, y: -103.8501}
+      - {x: 109.05643, y: -128.62509}
+      - {x: 122.61969, y: -124.00515}
+      - {x: 137.34329, y: -132.70172}
+      - {x: 133.30396, y: -144.8822}
+      - {x: 117.477356, y: -158.42303}
+      - {x: 108.241516, y: -181.16913}
+      - {x: 125.40613, y: -172.62332}
+      - {x: 148.10403, y: -155.53691}
+      - {x: 164.05316, y: -132.02435}
+      - {x: 155.15793, y: -126.45649}
+      - {x: 151.20718, y: -100.89087}
+      - {x: 135.46893, y: -85.77771}
+    - - {x: 12.618912, y: -102.029816}
+      - {x: -3.8839417, y: -88.94489}
+      - {x: -4.298233, y: -110.17515}
+      - {x: -18.483017, y: -117.05765}
+      - {x: -23.545425, y: -129.99866}
+      - {x: -40.390152, y: -137.48923}
+      - {x: -49.811646, y: -154.5458}
+      - {x: -32.42537, y: -161.64255}
+      - {x: -7.17424, y: -164.4638}
+      - {x: 23.196457, y: -159.87112}
+      - {x: 30.579758, y: -150.02435}
+      - {x: 31.286621, y: -134.80496}
+      - {x: 47.45421, y: -129.83087}
+      - {x: 52.16913, y: -109.082}
+      - {x: 40.19397, y: -100.4592}
+      - {x: 23.024353, y: -95.25112}
+    - - {x: -113.51887, y: -102.52255}
+      - {x: -112.86176, y: -116.53456}
+      - {x: -135.49878, y: -101.56482}
+      - {x: -137.82634, y: -89.073845}
+      - {x: -156.24152, y: -71.985275}
+      - {x: -174.87444, y: -51.652145}
+      - {x: -174.83174, y: -88.07491}
+      - {x: -162.20308, y: -121.2319}
+      - {x: -146.34055, y: -143.32959}
+      - {x: -119.29981, y: -159.57976}
+      - {x: -111.028824, y: -141.89879}
+      - {x: -93.44035, y: -136.45898}
+      - {x: -89.17662, y: -123.3842}
+      - {x: -72.536194, y: -113.25625}
+      - {x: -73.71493, y: -93.178734}
+      - {x: -104.76297, y: -97.091606}
+    - - {x: 136.43945, y: 67.285095}
+      - {x: 119.77768, y: 55.149902}
+      - {x: 115.99109, y: 42.988724}
+      - {x: 116.82947, y: 33.499786}
+      - {x: 130.49976, y: 33.15631}
+      - {x: 131.33344, y: 19.807892}
+      - {x: 130.32263, y: 2.2058868}
+      - {x: 137.57236, y: -10.303696}
+      - {x: 143.16568, y: -28.071716}
+      - {x: 132.15439, y: -32.391434}
+      - {x: 153.50735, y: -40.347855}
+      - {x: 157.86484, y: -26.821259}
+      - {x: 162.3558, y: -0.52267456}
+      - {x: 160.22232, y: 25.024353}
+      - {x: 149.24152, y: 51.66687}
+    - - {x: 23.607208, y: 19.963089}
+      - {x: 28.835312, y: 32.137054}
+      - {x: 14.758484, y: 49.347855}
+      - {x: -5.7873077, y: 31.666885}
+      - {x: 5.6323547, y: 14.848282}
+      - {x: -10.700241, y: 4.663788}
+      - {x: -23.864838, y: 17.149902}
+      - {x: -31.03395, y: 0.15951538}
+      - {x: -41.93721, y: -13.889175}
+      - {x: -41.428894, y: -24.930237}
+      - {x: -22.176285, y: -37.57103}
+      - {x: -14.747437, y: -18.657745}
+      - {x: 2.3070984, y: -20.874878}
+      - {x: 13.9947815, y: -9.40123}
+      - {x: 37.096725, y: -30.096725}
+      - {x: 48.05316, y: -22.560547}
+      - {x: 47.758484, y: 0.4010315}
+      - {x: 38.50737, y: 14.473419}
+    - - {x: -136.51193, y: 16.67691}
+      - {x: -151.89366, y: 20.309418}
+      - {x: -153.10634, y: 40.642532}
+      - {x: -161.58936, y: 24.560547}
+      - {x: -164.57977, y: 5.739273}
+      - {x: -145.72006, y: -10.671371}
+      - {x: -146.63293, y: -21.391418}
+      - {x: -128.03842, y: -29.642532}
+      - {x: -119.08199, y: -22.115952}
+      - {x: -110.24151, y: 1.28508}
+      - {x: -119.086296, y: 9.4934845}
+      - {x: -123.89366, y: 24.87445}
+    - - {x: -47.87445, y: 63.05316}
+      - {x: -67.40103, y: 60.285065}
+      - {x: -46.579758, y: 43.536194}
+      - {x: -32.946823, y: 42.652145}
+      - {x: -34.66176, y: 51.536194}
+      - {x: -29.357468, y: 61.579773}
+    - - {x: -130.88405, y: 155.80203}
+      - {x: -158.918, y: 134.82126}
+      - {x: -168.80511, y: 121.898224}
+      - {x: -165.69571, y: 102.37668}
+      - {x: -152.15439, y: 98.05765}
+      - {x: -138.69586, y: 105.98462}
+      - {x: -135.80922, y: 94.60208}
+      - {x: -111.197945, y: 71.83087}
+      - {x: -95.07239, y: 79.536194}
+      - {x: -107.34361, y: 98.156006}
+      - {x: -95.208, y: 96.7641}
+      - {x: -82.483025, y: 126.3139}
+      - {x: -87.75312, y: 131.99887}
+      - {x: -78.94683, y: 141.80206}
+      - {x: -107.01922, y: 164.64252}
+    - - {x: 111.70532, y: 169.86484}
+      - {x: 116.840485, y: 157.3818}
+      - {x: 105.173615, y: 138.48303}
+      - {x: 102.226776, y: 123.21716}
+      - {x: 81.4722, y: 113.20767}
+      - {x: 103.492615, y: 82.89368}
+      - {x: 114.536194, y: 102.63742}
+      - {x: 135.39142, y: 94.52658}
+      - {x: 138.01614, y: 121.810425}
+      - {x: 121.11368, y: 124.750305}
+      - {x: 124.84488, y: 148.25308}
+      - {x: 135.3967, y: 148.7728}
+      - {x: 143.64252, y: 158.6861}
+      - {x: 118.16913, y: 179.4638}
+    - - {x: 5.6861115, y: 175.75848}
+      - {x: -24.81166, y: 173.99039}
+      - {x: -3.5944977, y: 143.56052}
+      - {x: -6.1063538, y: 124.94171}
+      - {x: 5.406143, y: 99.00961}
+      - {x: 30.864838, y: 99.714905}
+      - {x: 29.45575, y: 125.56558}
+      - {x: 41.347855, y: 143.43945}
+      - {x: 33.66487, y: 154.08984}
+      - {x: 39.874435, y: 164.99039}
+      - {x: 25.347855, y: 171.57974}
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 1537655665
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      Crystal_ball_Broken_0: -947166601
+      Crystal_ball_Broken_1: 1190554977
+      Crystal_ball_Broken_10: -1236209524
+      Crystal_ball_Broken_2: -1870965066
+      Crystal_ball_Broken_3: -1968693142
+      Crystal_ball_Broken_4: 506243458
+      Crystal_ball_Broken_5: 1222284238
+      Crystal_ball_Broken_6: 1311550280
+      Crystal_ball_Broken_7: -978931686
+      Crystal_ball_Broken_8: 1842538815
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
