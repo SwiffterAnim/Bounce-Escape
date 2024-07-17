@@ -7418,6 +7418,8 @@ MonoBehaviour:
   playerVisualController: {fileID: 1065428937}
   playerMovementController: {fileID: 1065428936}
   ps: {fileID: 1065428944}
+  brokenPlayer: {fileID: 6177388554925981457, guid: 220204b186c4a4c1f9893827ba737db7, type: 3}
+  SR: {fileID: 1065428932}
   timeToRecoverShield: 3
   isAlive: 0
 --- !u!120 &1065428940
@@ -7558,6 +7560,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ecb7bfa314d9f49e1bf5ced0cf653d5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rb: {fileID: 1065428931}
 --- !u!199 &1065428943
 ParticleSystemRenderer:
   serializedVersion: 6

@@ -9,6 +9,11 @@ public class PlayerLifeController : MonoBehaviour
     [SerializeField] private PlayerVisualController playerVisualController;
     [SerializeField] private PlayerMovementController playerMovementController;
     [SerializeField] private ParticleSystem ps;
+    
+    //TESTING the broken player thing.--------------------------------------------------------------------------------
+    [SerializeField] private GameObject brokenPlayer;
+    [SerializeField] private SpriteRenderer SR;
+
     [SerializeField] float timeToRecoverShield = 3f;
 
     private Rigidbody2D rb;
@@ -64,7 +69,7 @@ public class PlayerLifeController : MonoBehaviour
             }
             if (obstacleEntity.isDestroyableAfterImpact)
             {
-                Destroy(other.gameObject); //I think I should destroy this object on the ProjectileDestroyController... But I don't know how hehe
+                Destroy(other.gameObject); //I think I should destroy this object on the ProjectileDestroyController... But I don't know how hehe --------------------------------------------------------------------------------
             }
         }
 
@@ -75,18 +80,23 @@ public class PlayerLifeController : MonoBehaviour
         TimeManager.Instance.DoSlowMotion();
         ps.Play();
         recoveryTimer = 0;
+
+
+        //TO CHANGE: For now I'll do if you take another damage after being on minimum shield, you die. --------------------------------------------------------------------------------
+
+        if (crackIndex + 1 > numberOfCrackedSprites)
+        {
+            Die();
+        }
+
+
+
         if (crackIndex < numberOfCrackedSprites)
         {
             crackIndex++;
             playerVisualController.CrackCristalBall(crackIndex);
         }
 
-        //TO CHANGE: For now I'll do if you take another damage after being on minimum shield, you die.
-
-        if (crackIndex >= numberOfCrackedSprites)
-        {
-            Die();
-        }
     }
 
     private void RecoverShield()
@@ -110,6 +120,11 @@ public class PlayerLifeController : MonoBehaviour
         isAlive = false;
         rb.WakeUp();
         rb.isKinematic = false;
+
+        //TESTING the broken player thing.--------------------------------------------------------------------------------
+        GameObject destroyed = (GameObject)Instantiate(brokenPlayer);
+        destroyed.transform.position = transform.position;
+        SR.enabled = false;
         
     }
 }

@@ -6,6 +6,8 @@ public class PlayerManager : MonoBehaviour
 {
     public static PlayerManager Instance;
 
+    [SerializeField] Rigidbody2D rb;
+
     private void Awake()
     {
         if (Instance == null)
@@ -22,5 +24,10 @@ public class PlayerManager : MonoBehaviour
     public Vector3 GetPlayerPosition()
     {
         return transform.position;
+    }
+
+    public Vector2 GetPlayerVelocity()
+    {
+        return rb.velocity;
     }
 }
