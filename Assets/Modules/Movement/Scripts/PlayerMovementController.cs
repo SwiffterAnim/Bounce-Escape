@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,8 +6,13 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovementController : MonoBehaviour
 {
+    public event Action<InputValue> OnAimEvent;
 
-    [SerializeField] private float jumpForce = 350f;
+    public float jumpForce = 350f;
+    [SerializeField] private PlayerCollisionController playerCollisionController;
+    [SerializeField] private PlayerLifeController playerLifeController;
+    [SerializeField] private PlayerInput playerInput;
+    [SerializeField] private TimeManager timeManager;
 
     private bool gamepadIsConnected = false;
 
@@ -15,10 +21,21 @@ public class PlayerMovementController : MonoBehaviour
     private MyInputActions characterActions;
 
     private Vector2 aim;
-    private bool canJump = true;
+    public bool canJump = true;
+    public bool isHooked = false;
 
 
-    // Start is called before the first frame update
+    private void Awake()
+    {
+        playerCollisionController.OnCollisionEnter2DEvent += OnCollisionEnter2DEvent;
+  
+    }
+
+    private void OnDestroy()
+    {
+        playerCollisionController.OnCollisionEnter2DEvent -= OnCollisionEnter2DEvent;
+    }
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -30,13 +47,12 @@ public class PlayerMovementController : MonoBehaviour
         InputSystem.onDeviceChange += OnDeviceChange;
     }
 
-    // Update is called once per frame
     void Update()
     {
         // I'm trying to test if gamepadIsConnected is actually changing, but it doesn't look like it is.
         if(!gamepadIsConnected)
         {
-            // UpdateAimWithMouse();
+            //UpdateAimWithMouse();
         }
     }
 
@@ -60,41 +76,103 @@ public class PlayerMovementController : MonoBehaviour
 
     private void OnAim(InputValue value)
     {
+        OnAimEvent?.Invoke(value);
         aim = value.Get<Vector2>();
     }
 
     private void OnJump(InputValue value)
     {
+        timeManager.CancelSlowMotion();
         rb.isKinematic = false;
+        rb.WakeUp();
         if (canJump)
         {
             if (aim == Vector2.zero)
             {
                 aim.y = 1f;
             }
+            if( -0.1 < aim.x && aim.x < 0.1 && -0.1 < aim.y && aim.y < 0.1)
+            {
+                // this is just correction the issue that the joystick when let go, doesn't go exactly to 0. Mechanical problem.
+                aim = Vector2.zero;
+                aim.y = 1f;
+            }
             rb.velocity = Vector2.zero;
-            rb.AddForce(aim * jumpForce);
+            rb.AddForce(aim.normalized * jumpForce);
             canJump = false;
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D other)
+    private void OnCollisionEnter2DEvent(Collision2D other)
     {
-        canJump = true;
+        if(playerLifeController.isAlive)
+        {
+            if (other.gameObject.TryGetComponent(out ObstacleEntity obstacle))
+            {
+                if(!obstacle.isWall)
+                {
+                    Vector2 projectileVelocity = other.rigidbody.velocity.normalized;
+                    //I'm failing at getting the projectile's velocity...
+                    if(isHooked)
+                    {
+                        rb.isKinematic = false;
+                        rb.WakeUp();
+                        isHooked = false;
+                    }
+                    else
+                    {
+                        rb.velocity = Vector2.zero;
+                    }
+                    
+                    rb.AddForce(projectileVelocity * jumpForce);
+                }   
+            }
+
+            
+            canJump = true;
+            CameraManager.Instance.Shake();
+        }
+        
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        canJump = true;
         if (other.gameObject.TryGetComponent(out ObstacleEntity obstacle))
         {
-            if (obstacle.hooknessActivated)
+            if (obstacle.hooknessActivated && playerLifeController.isAlive)
             {
+                isHooked = true;
+                canJump = true;
                 transform.position = Vector2.Lerp(other.gameObject.transform.position, transform.position, obstacle.attractionSpeed * Time.deltaTime);
                 rb.velocity = Vector2.zero;
                 rb.isKinematic = true;
+                rb.Sleep();
             }
         }
+    }
+
+
+    //Not sure if this should be here on this script.
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        isHooked = false;
+        if (other.gameObject.TryGetComponent(out ObstacleHookController obstacle) && playerLifeController.isAlive)
+        {
+            obstacle.DeactivateHook();
+        }
+
+    }
+
+    public void DisableInput()
+    {
+        characterActions.Disable();
+        playerInput.actions.Disable();
+    }
+
+    public void EnableInput()
+    {
+        characterActions.Enable();
+        playerInput.actions.Enable();
     }
 
 }

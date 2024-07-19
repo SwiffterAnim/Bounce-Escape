@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6025638826401154548}
   - component: {fileID: 6025638826401154551}
   - component: {fileID: 6025638826401154546}
+  - component: {fileID: -4790127276102507831}
   m_Layer: 0
   m_Name: Hook
   m_TagString: Untagged
@@ -72,11 +73,11 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 16140215
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.6410817, g: 0.612985, b: 0.8962264, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -100,6 +101,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hooknessActivated: 1
   attractionSpeed: 3
+  doesDamage: 0
+  isDestroyableAfterImpact: 0
+  isWall: 0
 --- !u!58 &6025638826401154546
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -116,3 +120,17 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!114 &-4790127276102507831
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6025638826401154550}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e17957b809b45435685ddaadf82f0384, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  obstacleEntity: {fileID: 6025638826401154551}
+  reactivateHookAfter: 5
