@@ -7,6 +7,7 @@ public class PlayerManager : MonoBehaviour
     public static PlayerManager Instance;
 
     [SerializeField] Rigidbody2D rb;
+    public bool isAlive;
 
     private void Awake()
     {

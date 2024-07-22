@@ -105,7 +105,7 @@ public class PlayerMovementController : MonoBehaviour
 
     private void OnCollisionEnter2DEvent(Collision2D other)
     {
-        if(playerLifeController.isAlive)
+        if(PlayerManager.Instance.isAlive)
         {
             if (other.gameObject.TryGetComponent(out ObstacleEntity obstacle))
             {
@@ -140,7 +140,7 @@ public class PlayerMovementController : MonoBehaviour
     {
         if (other.gameObject.TryGetComponent(out ObstacleEntity obstacle))
         {
-            if (obstacle.hooknessActivated && playerLifeController.isAlive)
+            if (obstacle.hooknessActivated && PlayerManager.Instance.isAlive)
             {
                 isHooked = true;
                 canJump = true;
@@ -157,7 +157,7 @@ public class PlayerMovementController : MonoBehaviour
     private void OnTriggerExit2D(Collider2D other)
     {
         isHooked = false;
-        if (other.gameObject.TryGetComponent(out ObstacleHookController obstacle) && playerLifeController.isAlive)
+        if (other.gameObject.TryGetComponent(out ObstacleHookController obstacle) && PlayerManager.Instance.isAlive)
         {
             obstacle.DeactivateHook();
         }

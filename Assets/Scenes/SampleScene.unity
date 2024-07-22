@@ -6194,7 +6194,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &641546529
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7418,10 +7418,10 @@ MonoBehaviour:
   playerVisualController: {fileID: 1065428937}
   playerMovementController: {fileID: 1065428936}
   ps: {fileID: 1065428944}
+  protectiveshield: {fileID: 7373218126201680730, guid: 1f60d645379de4918a8c71253dcbf138, type: 3}
   brokenPlayer: {fileID: 6177388554925981457, guid: 220204b186c4a4c1f9893827ba737db7, type: 3}
   SR: {fileID: 1065428932}
   timeToRecoverShield: 3
-  isAlive: 0
 --- !u!120 &1065428940
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -7561,6 +7561,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 1065428931}
+  isAlive: 0
 --- !u!199 &1065428943
 ParticleSystemRenderer:
   serializedVersion: 6

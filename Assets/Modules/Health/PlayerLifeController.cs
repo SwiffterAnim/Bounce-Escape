@@ -9,6 +9,7 @@ public class PlayerLifeController : MonoBehaviour
     [SerializeField] private PlayerVisualController playerVisualController;
     [SerializeField] private PlayerMovementController playerMovementController;
     [SerializeField] private ParticleSystem ps;
+    [SerializeField] private GameObject protectiveshield;
     
     //TESTING the broken player thing.--------------------------------------------------------------------------------
     [SerializeField] private GameObject brokenPlayer;
@@ -18,8 +19,6 @@ public class PlayerLifeController : MonoBehaviour
 
     private Rigidbody2D rb;
     private ObstacleEntity obstacleEntity;
-
-    public bool isAlive;
 
     private float recoveryTimer = 0;
     private int crackIndex;
@@ -44,7 +43,7 @@ public class PlayerLifeController : MonoBehaviour
     void Start()
     {
         crackIndex = 0;
-        isAlive = true;
+        PlayerManager.Instance.isAlive = true;
         rb = GetComponent<Rigidbody2D>();
         numberOfCrackedSprites = playerVisualController.crackStages.Length - 1;
     }
@@ -52,7 +51,7 @@ public class PlayerLifeController : MonoBehaviour
     
     void Update()
     {
-        if(isAlive)
+        if(PlayerManager.Instance.isAlive)
         {
             RecoverShield();
         }
@@ -63,7 +62,7 @@ public class PlayerLifeController : MonoBehaviour
 
         if (other.gameObject.TryGetComponent<ObstacleEntity>(out obstacleEntity))
         {
-            if (obstacleEntity.doesDamage && isAlive)
+            if (obstacleEntity.doesDamage && PlayerManager.Instance.isAlive)
             {
                 TakeDamage();
             }
@@ -78,6 +77,7 @@ public class PlayerLifeController : MonoBehaviour
     private void TakeDamage()
     {
         TimeManager.Instance.DoSlowMotion();
+        Instantiate(protectiveshield, transform.position, Quaternion.identity);
         ps.Play();
         recoveryTimer = 0;
 
@@ -117,12 +117,12 @@ public class PlayerLifeController : MonoBehaviour
     {
         playerMovementController.DisableInput();
         playerMovementController.enabled = false;
-        isAlive = false;
+        PlayerManager.Instance.isAlive = false;
         rb.WakeUp();
         rb.isKinematic = false;
 
         //TESTING the broken player thing.--------------------------------------------------------------------------------
-        GameObject destroyed = (GameObject)Instantiate(brokenPlayer);
+        GameObject destroyed = Instantiate(brokenPlayer);
         destroyed.transform.position = transform.position;
         SR.enabled = false;
         

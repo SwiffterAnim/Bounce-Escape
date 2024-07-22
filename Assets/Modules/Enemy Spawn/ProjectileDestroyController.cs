@@ -19,4 +19,16 @@ public class ProjectileDestroyController : MonoBehaviour
 
     }
 
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if(other.gameObject.TryGetComponent(out ObstacleEntity obstacleEntity))
+        {
+            if (obstacleEntity.isDestroyableAfterImpact)
+            {
+                Destroy(other.gameObject);
+                Destroy(gameObject);
+            }
+        }    
+    }
+
 }
