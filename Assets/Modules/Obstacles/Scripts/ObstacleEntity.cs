@@ -10,19 +10,17 @@ public class ObstacleEntity : MonoBehaviour
     public bool isDestroyableAfterImpact;
     public bool isWall;
 
-
-
-    ObstacleEntity obstacleEntity;
     Collider2D thisCollider;
 
     private void Start()
     {
-        thisCollider = GetComponent<Collider2D>();    
+        thisCollider = GetComponent<Collider2D>();
     }
+
     
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if(other.gameObject.TryGetComponent<ObstacleEntity>(out obstacleEntity))
+        if(other.gameObject.TryGetComponent(out ObstacleEntity obstacleEntity))
         {
             Collider2D colliderToIgnore = other.gameObject.GetComponent<Collider2D>();
             Physics2D.IgnoreCollision(thisCollider, colliderToIgnore);
