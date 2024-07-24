@@ -16,6 +16,7 @@ public class EnemySpawnManager : MonoBehaviour
     
     private void Update()
     {
+        //if Difficulty or Level = x enum whatever: Because it depends on the level which enemies spawn.
         timer += Time.deltaTime;
         if (timer > timeSpawnShooter)
         {

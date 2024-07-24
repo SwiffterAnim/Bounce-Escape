@@ -6189,12 +6189,12 @@ GameObject:
   - component: {fileID: 641546530}
   - component: {fileID: 641546529}
   m_Layer: 0
-  m_Name: ShooterInstantiator
+  m_Name: EnemySpawnManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &641546529
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6217,7 +6217,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 641546528}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -9.09, y: 3.27, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6876,7 +6876,7 @@ Transform:
   m_GameObject: {fileID: 884028008}
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
   m_LocalPosition: {x: 9.1, y: 0, z: 0}
-  m_LocalScale: {x: 9.5, y: 1, z: 1}
+  m_LocalScale: {x: 9.31, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -6899,6 +6899,8 @@ MonoBehaviour:
   doesDamage: 1
   isDestroyableAfterImpact: 0
   isWall: 1
+  isVerticalWall: 1
+  isHorizontalWall: 0
 --- !u!1001 &925053882
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12709,6 +12711,8 @@ MonoBehaviour:
   doesDamage: 1
   isDestroyableAfterImpact: 0
   isWall: 1
+  isVerticalWall: 0
+  isHorizontalWall: 1
 --- !u!4 &1257983355 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6025638826401154549, guid: bd8a23a62c81f4fb7891f9b772ef89f0, type: 3}
@@ -13785,6 +13789,8 @@ MonoBehaviour:
   doesDamage: 1
   isDestroyableAfterImpact: 0
   isWall: 1
+  isVerticalWall: 0
+  isHorizontalWall: 1
 --- !u!4 &1786311776 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6025638826401154549, guid: bd8a23a62c81f4fb7891f9b772ef89f0, type: 3}
@@ -13965,7 +13971,7 @@ Transform:
   m_GameObject: {fileID: 1799144789}
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
   m_LocalPosition: {x: -9.1, y: -0, z: 0}
-  m_LocalScale: {x: 9.5, y: 1, z: 1}
+  m_LocalScale: {x: 9.31, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -13988,6 +13994,8 @@ MonoBehaviour:
   doesDamage: 1
   isDestroyableAfterImpact: 0
   isWall: 1
+  isVerticalWall: 1
+  isHorizontalWall: 0
 --- !u!4 &1800680222 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6025638826401154549, guid: bd8a23a62c81f4fb7891f9b772ef89f0, type: 3}

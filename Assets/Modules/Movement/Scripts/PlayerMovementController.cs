@@ -112,7 +112,7 @@ public class PlayerMovementController : MonoBehaviour
                 if(!obstacle.isWall)
                 {
                     
-                    Vector2 projectileVelocity = other.gameObject.GetComponent<ProjectileEntity>().thisObjectsVeloity;
+                    Vector2 projectileVelocity = other.gameObject.GetComponent<ProjectileEntity>().thisObjectsVelocity;
                     //I'm failing at getting the projectile's velocity...
                     if(isHooked)
                     {

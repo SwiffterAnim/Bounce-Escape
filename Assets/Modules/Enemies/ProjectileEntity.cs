@@ -9,14 +9,14 @@ public class ProjectileEntity : MonoBehaviour
     public Rigidbody2D rb;
 
     private float timer = 0;
-    public Vector2 thisObjectsVeloity;
+    public Vector2 thisObjectsVelocity;
 
     private void Update()
     {
         timer += Time.deltaTime;
         if (timer > 0.01)
         {
-            thisObjectsVeloity = GetComponent<Rigidbody2D>().velocity;
+            thisObjectsVelocity = GetComponent<Rigidbody2D>().velocity;
         }
     }
     

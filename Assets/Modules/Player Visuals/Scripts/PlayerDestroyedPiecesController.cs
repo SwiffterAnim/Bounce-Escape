@@ -15,7 +15,7 @@ public class PlayerDestroyedPiecesController : MonoBehaviour
     void Start()
     {
         playerVelocity = PlayerManager.Instance.GetPlayerVelocity().normalized;
-        Debug.Log(playerVelocity);
+        
         rb.AddForce(playerVelocity * force + randomForceDirection * force);
     }
 

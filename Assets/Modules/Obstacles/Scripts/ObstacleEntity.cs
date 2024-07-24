@@ -9,6 +9,8 @@ public class ObstacleEntity : MonoBehaviour
     public bool doesDamage;
     public bool isDestroyableAfterImpact;
     public bool isWall;
+    public bool isVerticalWall;
+    public bool isHorizontalWall;
 
     Collider2D thisCollider;
 

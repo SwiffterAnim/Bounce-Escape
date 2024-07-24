@@ -15,13 +15,17 @@ public class ProjectileSpawnController : MonoBehaviour
    
    private void Update()
     {
-        timer += Time.deltaTime;
-
-        if (timer > timeToShoot)
+        if(PlayerManager.Instance.isAlive)
         {
-            timer = 0;
-            Shoot();
+            timer += Time.deltaTime;
+
+            if (timer > timeToShoot)
+            {
+                timer = 0;
+                Shoot();
+            }
         }
+        
     }
 
 

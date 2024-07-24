@@ -42,7 +42,6 @@ public class PlayerProtectiveShieldController : MonoBehaviour
 
         }
 
-        // Destroy(gameObject, shieldTime);
 
         if(!PlayerManager.Instance.isAlive)
         {
