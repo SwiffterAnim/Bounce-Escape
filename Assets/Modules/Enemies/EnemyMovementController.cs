@@ -1,9 +1,12 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyMovementController : MonoBehaviour
 {
+    public static event Action OnShooterIsDeadEvent;
+    
     [SerializeField]private EnemyEntity enemyEntity;
 
     //For SHOOTER
@@ -16,6 +19,9 @@ public class EnemyMovementController : MonoBehaviour
     private Rigidbody2D rb;
     private float randomSignX;
     private float randomSignY;
+
+    
+
     
     void Start()
     {
@@ -37,15 +43,15 @@ public class EnemyMovementController : MonoBehaviour
         string animationName = enemyName + ANIMATION;
         
         animator = GetComponent<Animator>();
-        randomOffset = Random.Range(0f, 1f);
+        randomOffset = UnityEngine.Random.Range(0f, 1f);
 
         animator.Play(animationName, 0, randomOffset);
     }
 
     private void StartShooterDestroyer()
     {
-        float randomX = Random.Range(-7f, 7f);
-        float randomY = Random.Range(-4f, 4f);
+        float randomX = UnityEngine.Random.Range(-7f, 7f);
+        float randomY = UnityEngine.Random.Range(-4f, 4f);
         transform.position = new Vector3(randomX, randomY, 0);
 
         rb = GetComponent<Rigidbody2D>();
@@ -59,7 +65,7 @@ public class EnemyMovementController : MonoBehaviour
     private float RandomSign()
     {
         // Return either -1 or 1 using Unity's Random class.
-        return Random.value < 0.5 ? -1f : 1f;
+        return UnityEngine.Random.value < 0.5 ? -1f : 1f;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -84,6 +90,7 @@ public class EnemyMovementController : MonoBehaviour
             }
             if(other.gameObject.TryGetComponent(out PlayerManager playerManager)) //Just checking if it's the player.
             {
+                OnShooterIsDeadEvent?.Invoke();
                 enemyEntity.isDead = true;
             }
         }

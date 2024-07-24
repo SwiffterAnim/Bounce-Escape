@@ -16,13 +16,17 @@ public class EnemySpawnManager : MonoBehaviour
     
     private void Update()
     {
-        //if Difficulty or Level = x enum whatever: Because it depends on the level which enemies spawn.
-        timer += Time.deltaTime;
-        if (timer > timeSpawnShooter)
+        if(PlayerManager.Instance.isAlive)
         {
-            timer = 0;
-            InstantiateShooter();
+            //if Difficulty or Level = x enum whatever: Because it depends on the level which enemies spawn.
+            timer += Time.deltaTime;
+            if (timer > timeSpawnShooter)
+            {
+                timer = 0;
+                InstantiateShooter();
+            }
         }
+        
     }
 
     private void InstantiateShooter()

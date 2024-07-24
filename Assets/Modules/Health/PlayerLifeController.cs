@@ -2,9 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System;
 
 public class PlayerLifeController : MonoBehaviour
 {
+    public static event Action OnPlayerDiedEvent;
+
     [SerializeField] private PlayerCollisionController playerCollisionController;
     [SerializeField] private PlayerVisualController playerVisualController;
     [SerializeField] private PlayerMovementController playerMovementController;
@@ -115,6 +118,7 @@ public class PlayerLifeController : MonoBehaviour
 
     private void Die()
     {
+        OnPlayerDiedEvent?.Invoke();
         playerMovementController.DisableInput();
         playerMovementController.enabled = false;
         PlayerManager.Instance.isAlive = false;

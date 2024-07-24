@@ -13,6 +13,15 @@ public class PlayerProtectiveShieldController : MonoBehaviour
     private float expansionProgress = 0;
     private float retractionProgress = 0;
 
+    private void OnEnable()
+    {
+        PlayerLifeController.OnPlayerDiedEvent += OnPlayerDiedEvent;
+    }
+    private void OnDisable()
+    {
+        PlayerLifeController.OnPlayerDiedEvent -= OnPlayerDiedEvent;
+    }
+
     private void Start()
     {
         transform.localScale = initialScale;
@@ -41,12 +50,6 @@ public class PlayerProtectiveShieldController : MonoBehaviour
             
 
         }
-
-
-        if(!PlayerManager.Instance.isAlive)
-        {
-            Destroy(gameObject);
-        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -59,4 +62,11 @@ public class PlayerProtectiveShieldController : MonoBehaviour
             }
         }
     }
+
+    private void OnPlayerDiedEvent()
+    {
+        Destroy(gameObject);
+    }
+
+
 }

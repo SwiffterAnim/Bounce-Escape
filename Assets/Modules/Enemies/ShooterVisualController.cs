@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,26 +11,34 @@ public class ShooterVisualController : MonoBehaviour
     [SerializeField] private EnemyKillController enemyKillController;
     [SerializeField] private EnemyEntity enemyEntity;
     [SerializeField] private GameObject explosion;
-
-    //TODO: Add a prefab of the explosion (empty gameobject with particleSystem) for it to be independent in the scene and not attatched to this.
     
-    [SerializeField] private float sparkSpeed = 0.2f;
+    [SerializeField] private float sparkSpeed;
+    private float sparkLerpSpeed;
     private float timer = 0;
+    private Vector3 destroyerPosition;
 
+    private void OnEnable()
+    {
+        EnemyMovementController.OnShooterIsDeadEvent += OnShooterIsDeadEvent;
+    }
+
+    private void OnDisable()
+    {
+        EnemyMovementController.OnShooterIsDeadEvent -= OnShooterIsDeadEvent;
+    }
 
     void Update()
     {
         DrawnLine();
         if(enemyEntity.isDead)
         {
-            Vector3 temp = PlayerManager.Instance.GetPlayerPosition();
             timer += Time.deltaTime;
-            SparkAnimation(); //this function is being called every frame... and I only need it once.
-            float t = timer / sparkSpeed;
-            destroyer.transform.position = Vector3.Lerp(temp, shooter.transform.position, t);
-            if(timer >= sparkSpeed)
+            float t = timer / sparkLerpSpeed;
+            destroyer.transform.position = Vector3.Lerp(destroyerPosition, shooter.transform.position, t);
+            if(timer >= sparkLerpSpeed)
             {
                 Instantiate(explosion, destroyer.gameObject.transform.position, Quaternion.identity);
+                CameraManager.Instance.Shake();
                 enemyKillController.DestroyThisEnemy();
             }
         }
@@ -46,7 +55,16 @@ public class ShooterVisualController : MonoBehaviour
         SpriteRenderer destroyerSpriteRenderer = destroyer.GetComponent<SpriteRenderer>();
         destroyerSpriteRenderer.enabled = false;
         ParticleSystem sparks = destroyer.gameObject.GetComponent<ParticleSystem>();
-        Debug.Log(sparks);
         sparks.Play();
     }
+
+    private void OnShooterIsDeadEvent()
+    {
+        destroyerPosition = destroyer.transform.position;
+        float distance = Vector3.Distance(destroyerPosition, shooter.transform.position);
+        sparkLerpSpeed = distance / sparkSpeed;
+        SparkAnimation();
+    }
+
+    
 }

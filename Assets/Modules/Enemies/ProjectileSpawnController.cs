@@ -15,7 +15,7 @@ public class ProjectileSpawnController : MonoBehaviour
    
    private void Update()
     {
-        if(PlayerManager.Instance.isAlive)
+        if(PlayerManager.Instance.isAlive) //Not sure if I should use the OnPlayerDiedEvent or use the Player Manager like this. I guess I always need a book like "canShoot" anyway, even if I use the event?
         {
             timer += Time.deltaTime;
 

@@ -5001,7 +5001,8 @@ MonoBehaviour:
   enemyKillController: {fileID: 8117721311627728435}
   enemyEntity: {fileID: 5063331148790697586}
   explosion: {fileID: 7490747151983421536, guid: 3d5c8301565ce47fb823525e9b7c8af8, type: 3}
-  sparkSpeed: 0.35
+  enemyMovementController: {fileID: 6268332902966335389}
+  sparkSpeed: 25
 --- !u!120 &6211488003169951770
 LineRenderer:
   m_ObjectHideFlags: 0
