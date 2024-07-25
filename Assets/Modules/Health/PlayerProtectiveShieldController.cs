@@ -4,11 +4,20 @@ using UnityEngine;
 
 public class PlayerProtectiveShieldController : MonoBehaviour
 {
-    [SerializeField] private Vector3 initialScale;
-    [SerializeField] private Vector3 finalScale;
-    [SerializeField] private float shieldTime;
-    [SerializeField] private float decelerationExponent = 20;
-    [SerializeField] private float retractionSpeed = 0.5f;
+    [SerializeField]
+    private Vector3 initialScale;
+
+    [SerializeField]
+    private Vector3 finalScale;
+
+    [SerializeField]
+    private float shieldTime;
+
+    [SerializeField]
+    private float decelerationExponent = 20;
+
+    [SerializeField]
+    private float retractionSpeed = 0.5f;
 
     private float expansionProgress = 0;
     private float retractionProgress = 0;
@@ -17,6 +26,7 @@ public class PlayerProtectiveShieldController : MonoBehaviour
     {
         PlayerLifeController.OnPlayerDiedEvent += OnPlayerDiedEvent;
     }
+
     private void OnDisable()
     {
         PlayerLifeController.OnPlayerDiedEvent -= OnPlayerDiedEvent;
@@ -37,7 +47,6 @@ public class PlayerProtectiveShieldController : MonoBehaviour
 
         transform.localScale = Vector3.Lerp(initialScale, finalScale, expansionT);
 
-
         if (expansionProgress >= shieldTime)
         {
             retractionProgress += Time.deltaTime;
@@ -47,16 +56,14 @@ public class PlayerProtectiveShieldController : MonoBehaviour
 
             transform.localScale = Vector3.Lerp(finalScale, initialScale, retractionT);
             Destroy(gameObject, retractionSpeed);
-            
-
         }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-       if(other.gameObject.TryGetComponent(out ObstacleEntity obstacleEntity))
+        if (other.gameObject.TryGetComponent(out ObstacleEntity obstacleEntity))
         {
-            if(obstacleEntity.isDestroyableAfterImpact)
+            if (obstacleEntity.isDestroyableAfterImpact)
             {
                 Destroy(other.gameObject);
             }
@@ -67,6 +74,4 @@ public class PlayerProtectiveShieldController : MonoBehaviour
     {
         Destroy(gameObject);
     }
-
-
 }

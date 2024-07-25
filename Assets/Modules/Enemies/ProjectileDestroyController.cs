@@ -5,9 +5,7 @@ using UnityEngine;
 
 public class ProjectileDestroyController : MonoBehaviour
 {
-
     private float timer;
-
 
     void Update()
     {
@@ -16,19 +14,17 @@ public class ProjectileDestroyController : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
     }
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if(other.gameObject.TryGetComponent(out ObstacleEntity obstacleEntity))
+        if (other.gameObject.TryGetComponent(out ObstacleEntity obstacleEntity))
         {
             if (obstacleEntity.isDestroyableAfterImpact)
             {
                 Destroy(other.gameObject);
                 Destroy(gameObject);
             }
-        }    
+        }
     }
-
 }

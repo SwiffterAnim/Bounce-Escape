@@ -6,14 +6,19 @@ public class TimeManager : MonoBehaviour
 {
     public static TimeManager Instance;
 
-    [SerializeField] private float slowDownFactor = 0.05f;
-    [SerializeField] private float slowDownLength = 2f;
-    [SerializeField] private float timeToNormalSpeed = 1f;
-    [SerializeField] private float tempTimer = 0;
-    
+    [SerializeField]
+    private float slowDownFactor = 0.05f;
+
+    [SerializeField]
+    private float slowDownLength = 2f;
+
+    [SerializeField]
+    private float timeToNormalSpeed = 1f;
+
+    [SerializeField]
+    private float tempTimer = 0;
 
     private bool isSlowedDown = false;
-
 
     private void Awake()
     {
@@ -39,7 +44,6 @@ public class TimeManager : MonoBehaviour
         }
     }
 
-
     public void DoSlowMotion()
     {
         // normal timescale runs at 1. 0.05 means it's running 20 times slower.
@@ -47,7 +51,6 @@ public class TimeManager : MonoBehaviour
         Time.fixedDeltaTime = Time.timeScale * 0.02f;
         isSlowedDown = true;
     }
-
 
     private void UndoSlowMotion()
     {
@@ -59,7 +62,6 @@ public class TimeManager : MonoBehaviour
             tempTimer = 0;
             isSlowedDown = false;
         }
-        
     }
 
     public void CancelSlowMotion()
@@ -69,5 +71,4 @@ public class TimeManager : MonoBehaviour
         tempTimer = 0;
         isSlowedDown = false;
     }
-
 }

@@ -5,9 +5,10 @@ using UnityEngine;
 
 public class EnemyMovementController : MonoBehaviour
 {
-    public static event Action OnShooterIsDeadEvent;
-    
-    [SerializeField]private EnemyEntity enemyEntity;
+    public event Action OnDestroyerGetsCaughtEvent;
+
+    [SerializeField]
+    private EnemyEntity enemyEntity;
 
     //For SHOOTER
     private Animator animator;
@@ -20,28 +21,24 @@ public class EnemyMovementController : MonoBehaviour
     private float randomSignX;
     private float randomSignY;
 
-    
-
-    
     void Start()
     {
-            if(enemyEntity.isShooter)
-            {
-                StartShooter();
-            }
-            if(enemyEntity.isShooterDestroyer)
-            {
-                StartShooterDestroyer();
-            }        
+        if (enemyEntity.isShooter)
+        {
+            StartShooter();
+        }
+        if (enemyEntity.isShooterDestroyer)
+        {
+            StartShooterDestroyer();
+        }
     }
-
 
     private void StartShooter()
     {
         string enemyName = gameObject.name.Replace(CLONE, "").Trim();
-        
+
         string animationName = enemyName + ANIMATION;
-        
+
         animator = GetComponent<Animator>();
         randomOffset = UnityEngine.Random.Range(0f, 1f);
 
@@ -58,7 +55,10 @@ public class EnemyMovementController : MonoBehaviour
         randomSignX = RandomSign();
         randomSignY = RandomSign();
 
-        rb.velocity = new Vector2 (randomSignX * enemyEntity.shooterDestroyerSpeed, randomSignY * enemyEntity.shooterDestroyerSpeed);
+        rb.velocity = new Vector2(
+            randomSignX * enemyEntity.shooterDestroyerSpeed,
+            randomSignY * enemyEntity.shooterDestroyerSpeed
+        );
     }
 
     // Method to generate a random sign (-1 or 1)
@@ -70,32 +70,31 @@ public class EnemyMovementController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if(enemyEntity.isShooterDestroyer && !enemyEntity.isDead)
+        if (enemyEntity.isShooterDestroyer && !enemyEntity.isDead)
         {
-            if(other.gameObject.TryGetComponent(out ObstacleEntity obstacleEntity))
+            if (other.gameObject.TryGetComponent(out ObstacleEntity obstacleEntity))
             {
-                if(obstacleEntity.isWall)
+                if (obstacleEntity.isWall)
                 {
-                    if(obstacleEntity.isHorizontalWall)
+                    if (obstacleEntity.isHorizontalWall)
                     {
                         randomSignY *= -1;
                     }
-                    if(obstacleEntity.isVerticalWall)
+                    if (obstacleEntity.isVerticalWall)
                     {
                         randomSignX *= -1;
                     }
-                    rb.velocity =  new Vector2 (randomSignX * enemyEntity.shooterDestroyerSpeed, randomSignY * enemyEntity.shooterDestroyerSpeed);
+                    rb.velocity = new Vector2(
+                        randomSignX * enemyEntity.shooterDestroyerSpeed,
+                        randomSignY * enemyEntity.shooterDestroyerSpeed
+                    );
                 }
-                
             }
-            if(other.gameObject.TryGetComponent(out PlayerManager playerManager)) //Just checking if it's the player.
+            if (other.gameObject.TryGetComponent(out PlayerManager playerManager)) //Just checking if it's the player.
             {
-                OnShooterIsDeadEvent?.Invoke();
+                OnDestroyerGetsCaughtEvent?.Invoke();
                 enemyEntity.isDead = true;
             }
         }
-            
-       
     }
-
 }

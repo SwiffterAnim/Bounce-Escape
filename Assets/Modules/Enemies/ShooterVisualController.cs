@@ -1,45 +1,69 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class ShooterVisualController : MonoBehaviour
 {
-    [SerializeField] private LineRenderer lineRenderer;
-    [SerializeField] private GameObject shooter;
-    [SerializeField] private GameObject destroyer;
-    [SerializeField] private EnemyKillController enemyKillController;
-    [SerializeField] private EnemyEntity enemyEntity;
-    [SerializeField] private GameObject explosion;
-    
-    [SerializeField] private float sparkSpeed;
+    [SerializeField]
+    private LineRenderer lineRenderer;
+
+    [SerializeField]
+    private GameObject shooter;
+
+    [SerializeField]
+    private GameObject destroyer;
+
+    [SerializeField]
+    private EnemyLifeController enemyLifeController;
+
+    [SerializeField]
+    private EnemyEntity destroyerEnemyEntity;
+
+    [SerializeField]
+    private GameObject explosion;
+
+    [SerializeField]
+    private EnemyMovementController enemyMovementController;
+
+    [SerializeField]
+    private float sparkSpeed;
     private float sparkLerpSpeed;
     private float timer = 0;
     private Vector3 destroyerPosition;
 
     private void OnEnable()
     {
-        EnemyMovementController.OnShooterIsDeadEvent += OnShooterIsDeadEvent;
+        enemyLifeController.OnShooterGetsDestroyedEvent += OnShooterGetsDestroyedEvent;
     }
 
     private void OnDisable()
     {
-        EnemyMovementController.OnShooterIsDeadEvent -= OnShooterIsDeadEvent;
+        enemyLifeController.OnShooterGetsDestroyedEvent -= OnShooterGetsDestroyedEvent;
     }
 
     void Update()
     {
         DrawnLine();
-        if(enemyEntity.isDead)
+        if (destroyerEnemyEntity.isDead)
         {
             timer += Time.deltaTime;
             float t = timer / sparkLerpSpeed;
-            destroyer.transform.position = Vector3.Lerp(destroyerPosition, shooter.transform.position, t);
-            if(timer >= sparkLerpSpeed)
+            destroyer.transform.position = Vector3.Lerp(
+                destroyerPosition,
+                shooter.transform.position,
+                t
+            );
+            if (timer >= sparkLerpSpeed)
             {
-                Instantiate(explosion, destroyer.gameObject.transform.position, Quaternion.identity);
+                Instantiate(
+                    explosion,
+                    destroyer.gameObject.transform.position,
+                    Quaternion.identity
+                );
                 CameraManager.Instance.Shake();
-                enemyKillController.DestroyThisEnemy();
+                Destroy(enemyLifeController.gameObject);
             }
         }
     }
@@ -58,13 +82,11 @@ public class ShooterVisualController : MonoBehaviour
         sparks.Play();
     }
 
-    private void OnShooterIsDeadEvent()
+    private void OnShooterGetsDestroyedEvent()
     {
         destroyerPosition = destroyer.transform.position;
         float distance = Vector3.Distance(destroyerPosition, shooter.transform.position);
         sparkLerpSpeed = distance / sparkSpeed;
         SparkAnimation();
     }
-
-    
 }

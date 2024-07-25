@@ -4983,6 +4983,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1981637d44f04fee90dbd657ceec228, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  destroyerMovementController: {fileID: 6268332902966335389}
+  destroyerEnemyEntity: {fileID: 5063331148790697586}
 --- !u!114 &3862891728580404407
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4998,8 +5000,8 @@ MonoBehaviour:
   lineRenderer: {fileID: 6211488003169951770}
   shooter: {fileID: 6519674039176053472}
   destroyer: {fileID: 2366933179592655820}
-  enemyKillController: {fileID: 8117721311627728435}
-  enemyEntity: {fileID: 5063331148790697586}
+  enemyLifeController: {fileID: 8117721311627728435}
+  destroyerEnemyEntity: {fileID: 5063331148790697586}
   explosion: {fileID: 7490747151983421536, guid: 3d5c8301565ce47fb823525e9b7c8af8, type: 3}
   enemyMovementController: {fileID: 6268332902966335389}
   sparkSpeed: 25

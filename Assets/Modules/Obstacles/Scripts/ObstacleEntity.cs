@@ -19,14 +19,12 @@ public class ObstacleEntity : MonoBehaviour
         thisCollider = GetComponent<Collider2D>();
     }
 
-    
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if(other.gameObject.TryGetComponent(out ObstacleEntity obstacleEntity))
+        if (other.gameObject.TryGetComponent(out ObstacleEntity obstacleEntity))
         {
             Collider2D colliderToIgnore = other.gameObject.GetComponent<Collider2D>();
             Physics2D.IgnoreCollision(thisCollider, colliderToIgnore);
         }
     }
-
 }

@@ -4,17 +4,19 @@ using UnityEngine;
 
 public class ObstacleHookController : MonoBehaviour
 {
-    [SerializeField] private ObstacleEntity obstacleEntity;
-    [SerializeField] float reactivateHookAfter = 5f;
+    [SerializeField]
+    private ObstacleEntity obstacleEntity;
+
+    [SerializeField]
+    float reactivateHookAfter = 5f;
 
     private SpriteRenderer sr;
     private float timerForHookReactivation = 0;
 
-    private void Awake() 
+    private void Awake()
     {
         sr = GetComponent<SpriteRenderer>();
     }
-
 
     void Update()
     {

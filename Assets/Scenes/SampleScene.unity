@@ -222,7 +222,6 @@ GameObject:
   m_Component:
   - component: {fileID: 150270222}
   - component: {fileID: 150270224}
-  - component: {fileID: 150270223}
   - component: {fileID: 150270225}
   m_Layer: 0
   m_Name: Liquid
@@ -230,7 +229,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &150270222
 Transform:
   m_ObjectHideFlags: 0
@@ -246,21 +245,6 @@ Transform:
   m_Father: {fileID: 1065428933}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &150270223
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 150270221}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 50a78e6511a22444b9cee1deeb60c582, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MaxWobble: 0.03
-  WobbleSpeed: 1
-  Recovery: 1
 --- !u!212 &150270224
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -301,7 +285,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1238972069
   m_SortingLayer: 3
-  m_SortingOrder: 0
+  m_SortingOrder: 50
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
   m_Color: {r: 0.7264151, g: 0.16789784, b: 0.16789784, a: 1}
   m_FlipX: 0
@@ -325,7 +309,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b77bd5181eb6249cd9128315a9746637, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  material: {fileID: 2100000, guid: a638c2fde528f41f585cbfe1ee9d4835, type: 2}
+  rend: {fileID: 150270224}
 --- !u!4 &218266499 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6025638826401154549, guid: bd8a23a62c81f4fb7891f9b772ef89f0, type: 3}
@@ -6207,7 +6191,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1abbf5cacf2e45bf8fc51f723681e68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeSpawnShooter: 5
+  timeSpawnShooter: 2
   shooter: {fileID: 2378287140987906960, guid: 4bafb4f52c6b24e008387e579da50405, type: 3}
 --- !u!4 &641546530
 Transform:
@@ -7282,7 +7266,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1238972069
   m_SortingLayer: 3
-  m_SortingOrder: 10
+  m_SortingOrder: 100
   m_Sprite: {fileID: 21300000, guid: d072f2ec1af7743b69660228dc157b25, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -7392,6 +7376,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: e4d687ab08eed4255b924597fe2fa4c1, type: 3}
   - {fileID: 21300000, guid: 2b99c8d80b98044c183775892419b039, type: 3}
   - {fileID: 21300000, guid: 0db61bbc6d12f455c8a66312b6ded247, type: 3}
+  brokenPlayer: {fileID: 6177388554925981457, guid: 220204b186c4a4c1f9893827ba737db7, type: 3}
+  SR: {fileID: 1065428932}
 --- !u!114 &1065428938
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7421,9 +7407,15 @@ MonoBehaviour:
   playerMovementController: {fileID: 1065428936}
   ps: {fileID: 1065428944}
   protectiveshield: {fileID: 7373218126201680730, guid: 1f60d645379de4918a8c71253dcbf138, type: 3}
-  brokenPlayer: {fileID: 6177388554925981457, guid: 220204b186c4a4c1f9893827ba737db7, type: 3}
-  SR: {fileID: 1065428932}
+  fill: {fileID: 150270225}
+  rb: {fileID: 1065428931}
   timeToRecoverShield: 3
+  playerHealth: 100
+  damagePerSec1Crack: 1
+  damagePerSec2Cracks: 3
+  damagePerSec3Cracks: 6
+  damageFullCrack: 20
+  isAlive: 0
 --- !u!120 &1065428940
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -7563,7 +7555,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 1065428931}
-  isAlive: 0
+  playerLifeController: {fileID: 1065428939}
 --- !u!199 &1065428943
 ParticleSystemRenderer:
   serializedVersion: 6
