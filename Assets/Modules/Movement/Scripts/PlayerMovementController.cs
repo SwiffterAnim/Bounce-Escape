@@ -121,7 +121,6 @@ public class PlayerMovementController : MonoBehaviour
                     Vector2 projectileVelocity = other
                         .gameObject.GetComponent<ProjectileEntity>()
                         .velocity;
-                    //I'm failing at getting the projectile's velocity...
                     if (isHooked)
                     {
                         rb.isKinematic = false;
@@ -135,10 +134,13 @@ public class PlayerMovementController : MonoBehaviour
 
                     rb.AddForce(projectileVelocity * jumpForce);
                 }
+                if (obstacle.doesDamage)
+                {
+                    CameraManager.Instance.Shake();
+                }
             }
 
             canJump = true;
-            CameraManager.Instance.Shake();
         }
     }
 
@@ -150,6 +152,7 @@ public class PlayerMovementController : MonoBehaviour
             {
                 isHooked = true;
                 canJump = true;
+                //Lerp does NOT work outside of Update function.
                 transform.position = Vector2.Lerp(
                     other.gameObject.transform.position,
                     transform.position,
@@ -158,6 +161,12 @@ public class PlayerMovementController : MonoBehaviour
                 rb.velocity = Vector2.zero;
                 rb.isKinematic = true;
                 rb.Sleep();
+
+                //Testing Animator ________________________________________
+                if (other.gameObject.TryGetComponent(out ObstacleHookController hookController))
+                {
+                    hookController.PlayHookingAnimation();
+                }
             }
         }
     }

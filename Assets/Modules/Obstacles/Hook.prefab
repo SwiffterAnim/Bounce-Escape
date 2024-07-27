@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6025638826401154551}
   - component: {fileID: 6025638826401154546}
   - component: {fileID: -4790127276102507831}
+  - component: {fileID: 4898339556221464832}
   m_Layer: 0
   m_Name: Hook
   m_TagString: Untagged
@@ -76,8 +77,8 @@ SpriteRenderer:
   m_SortingLayerID: 16140215
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 0.6410817, g: 0.612985, b: 0.8962264, a: 1}
+  m_Sprite: {fileID: 124434000, guid: 7e5e2d853d5e34012813695bb71b70b3, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -104,6 +105,8 @@ MonoBehaviour:
   doesDamage: 0
   isDestroyableAfterImpact: 0
   isWall: 0
+  isVerticalWall: 0
+  isHorizontalWall: 0
 --- !u!58 &6025638826401154546
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -134,3 +137,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   obstacleEntity: {fileID: 6025638826401154551}
   reactivateHookAfter: 5
+  hookAnimator: {fileID: 4898339556221464832}
+--- !u!95 &4898339556221464832
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6025638826401154550}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 3407cc979e3994e208855541393cc845, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

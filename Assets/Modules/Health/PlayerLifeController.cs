@@ -25,7 +25,7 @@ public class PlayerLifeController : MonoBehaviour
     private GameObject protectiveshield;
 
     [SerializeField]
-    private PlayerLifeFillController fill;
+    private PlayerLifeFillController fillController;
 
     [SerializeField]
     private Rigidbody2D rb;
@@ -127,6 +127,8 @@ public class PlayerLifeController : MonoBehaviour
             crackIndex++;
             playerVisualController.CrackCristalBall(crackIndex);
         }
+
+        fillController.SetBloodDropEmissionRate(crackIndex);
     }
 
     public void TakeDamagePerSecond()
@@ -148,7 +150,7 @@ public class PlayerLifeController : MonoBehaviour
             healthAmount -= damagePerSec3Cracks * Time.deltaTime;
         }
 
-        fill.SetFillValue(healthAmount / playerHealth);
+        fillController.SetFillValue(healthAmount / playerHealth);
     }
 
     private void RecoverShield()
@@ -162,6 +164,7 @@ public class PlayerLifeController : MonoBehaviour
                 playerVisualController.RecoverCristalBall(crackIndex);
                 recoveryTimer = 0;
             }
+            fillController.SetBloodDropEmissionRate(crackIndex);
         }
     }
 
@@ -170,8 +173,10 @@ public class PlayerLifeController : MonoBehaviour
         OnPlayerDiedEvent?.Invoke();
         TimeManager.Instance.DoSlowMotion();
         CameraManager.Instance.Shake();
+        fillController.SetBloodDropEmissionRate(0);
         playerMovementController.DisableInput();
         playerMovementController.enabled = false;
+        Destroy(gameObject.GetComponent<Collider2D>()); //prob not the nicest way to do it.
         isAlive = false;
         rb.WakeUp();
         rb.isKinematic = false;
