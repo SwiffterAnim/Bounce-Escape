@@ -4,17 +4,24 @@ using UnityEngine;
 
 public class ObstacleHookController : MonoBehaviour
 {
-    [SerializeField] private ObstacleEntity obstacleEntity;
-    [SerializeField] float reactivateHookAfter = 5f;
+    [SerializeField]
+    private ObstacleEntity obstacleEntity;
+
+    [SerializeField]
+    float reactivateHookAfter = 5f;
+
+    [SerializeField]
+    Animator hookAnimator;
+
+    readonly string animationTransitions = "AnimStages";
 
     private SpriteRenderer sr;
     private float timerForHookReactivation = 0;
 
-    private void Awake() 
+    private void Awake()
     {
         sr = GetComponent<SpriteRenderer>();
     }
-
 
     void Update()
     {
@@ -30,11 +37,14 @@ public class ObstacleHookController : MonoBehaviour
 
     public void DeactivateHook()
     {
-        Color tmp = sr.color;
-        tmp.a = 0f;
-        sr.color = tmp;
+        // Color tmp = sr.color;
+        // tmp.a = 0f;
+        // sr.color = tmp;
         obstacleEntity.hooknessActivated = false;
         Destroy(GetComponent<CircleCollider2D>());
+
+        //Testing Animator ________________________________________
+        hookAnimator.SetInteger(animationTransitions, 2);
     }
 
     public void ReactivateHook()
@@ -47,5 +57,15 @@ public class ObstacleHookController : MonoBehaviour
         gameObject.AddComponent<CircleCollider2D>();
         CircleCollider2D myCollider = gameObject.GetComponent<CircleCollider2D>();
         myCollider.isTrigger = true;
+        myCollider.radius = 0.5f;
+
+        //Testing Animator ________________________________________
+        hookAnimator.SetInteger(animationTransitions, 0);
+    }
+
+    public void PlayHookingAnimation()
+    {
+        //Testing Animator ________________________________________
+        hookAnimator.SetInteger(animationTransitions, 1);
     }
 }

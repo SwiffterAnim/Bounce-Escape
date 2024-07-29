@@ -6,7 +6,23 @@ using UnityEngine;
 public class PlayerVisualController : MonoBehaviour
 {
     public Sprite[] crackStages;
-    
+
+    [SerializeField]
+    private GameObject brokenPlayer;
+
+    [SerializeField]
+    private SpriteRenderer SR;
+
+    private void OnEnable()
+    {
+        PlayerLifeController.OnPlayerDiedEvent += OnPlayerDieEvent;
+    }
+
+    private void OnDisable()
+    {
+        PlayerLifeController.OnPlayerDiedEvent -= OnPlayerDieEvent;
+    }
+
     private SpriteRenderer sr;
 
     // Start is called before the first frame update
@@ -18,11 +34,17 @@ public class PlayerVisualController : MonoBehaviour
 
     public void CrackCristalBall(int crackIndex)
     {
-        sr.sprite = crackStages[crackIndex];        
+        sr.sprite = crackStages[crackIndex];
     }
 
     public void RecoverCristalBall(int crackIndex)
     {
         sr.sprite = crackStages[crackIndex];
+    }
+
+    private void OnPlayerDieEvent()
+    {
+        Instantiate(brokenPlayer, transform.position, Quaternion.identity);
+        SR.enabled = false;
     }
 }

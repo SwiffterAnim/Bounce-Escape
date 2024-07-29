@@ -4,23 +4,25 @@ using UnityEngine;
 
 public class PlayerLifeFillController : MonoBehaviour
 {
-    [SerializeField] Material material;
-    private float fillValue = 1;
+    [SerializeField]
+    private SpriteRenderer rend;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField]
+    private ParticleSystem bloodDrops;
 
-    // Update is called once per frame
-    void Update()
+    private void Start()
     {
-        SetFillValue(1/10 * Time.deltaTime);
+        SetBloodDropEmissionRate(0);
     }
 
     public void SetFillValue(float amount)
     {
-        material.SetFloat("_Fill", fillValue - amount);
+        rend.material.SetFloat("_Fill", amount);
+    }
+
+    public void SetBloodDropEmissionRate(int crackIndex)
+    {
+        var myBloodEmission = bloodDrops.emission;
+        myBloodEmission.rateOverTime = crackIndex * 4;
     }
 }

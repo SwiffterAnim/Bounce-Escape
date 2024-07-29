@@ -6,7 +6,13 @@ public class PlayerManager : MonoBehaviour
 {
     public static PlayerManager Instance;
 
-    [SerializeField] Rigidbody2D rb;
+    [SerializeField]
+    Rigidbody2D rb;
+
+    [SerializeField]
+    PlayerLifeController playerLifeController;
+
+    public bool isAlive => playerLifeController.isAlive;
 
     private void Awake()
     {
@@ -17,9 +23,10 @@ public class PlayerManager : MonoBehaviour
         else
         {
             Destroy(gameObject);
-        }    
+        }
     }
 
+    private void Start() { }
 
     public Vector3 GetPlayerPosition()
     {
