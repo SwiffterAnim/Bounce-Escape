@@ -30,16 +30,18 @@ public class PlayerMovementController : MonoBehaviour
 
     private Vector2 aim;
     public bool canJump = true;
-    public bool isHooked = false;
+    public bool playerIsHooked = false;
 
     private void Awake()
     {
         playerCollisionController.OnCollisionEnter2DEvent += OnCollisionEnter2DEvent;
+        playerCollisionController.OnTriggerEnter2DEvent += OnTriggerEnter2DEvent;
     }
 
     private void OnDestroy()
     {
         playerCollisionController.OnCollisionEnter2DEvent -= OnCollisionEnter2DEvent;
+        playerCollisionController.OnTriggerEnter2DEvent -= OnTriggerEnter2DEvent;
     }
 
     void Start()
@@ -116,16 +118,16 @@ public class PlayerMovementController : MonoBehaviour
         {
             if (other.gameObject.TryGetComponent(out ObstacleEntity obstacle))
             {
-                if (!obstacle.isWall)
+                if (obstacle.isProjectile)
                 {
                     Vector2 projectileVelocity = other
                         .gameObject.GetComponent<ProjectileEntity>()
                         .velocity;
-                    if (isHooked)
+                    if (playerIsHooked)
                     {
                         rb.isKinematic = false;
                         rb.WakeUp();
-                        isHooked = false;
+                        playerIsHooked = false;
                     }
                     else
                     {
@@ -134,23 +136,19 @@ public class PlayerMovementController : MonoBehaviour
 
                     rb.AddForce(projectileVelocity * jumpForce);
                 }
-                if (obstacle.doesDamage)
-                {
-                    CameraManager.Instance.Shake();
-                }
             }
 
             canJump = true;
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerEnter2DEvent(Collider2D other)
     {
         if (other.gameObject.TryGetComponent(out ObstacleEntity obstacle))
         {
-            if (obstacle.hooknessActivated && PlayerManager.Instance.isAlive)
+            if (obstacle.isHook && obstacle.hooknessActivated && PlayerManager.Instance.isAlive)
             {
-                isHooked = true;
+                playerIsHooked = true;
                 canJump = true;
                 //Lerp does NOT work outside of Update function.
                 transform.position = Vector2.Lerp(
@@ -174,7 +172,7 @@ public class PlayerMovementController : MonoBehaviour
     //Not sure if this should be here on this script.
     private void OnTriggerExit2D(Collider2D other)
     {
-        isHooked = false;
+        playerIsHooked = false;
         if (
             other.gameObject.TryGetComponent(out ObstacleHookController obstacle)
             && PlayerManager.Instance.isAlive

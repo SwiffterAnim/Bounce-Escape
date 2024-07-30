@@ -10656,7 +10656,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.22054109, g: 0.22199869, b: 0.26415092, a: 0}
+  m_BackGroundColor: {r: 0.21035066, g: 0.21035066, b: 0.2735849, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -10974,7 +10974,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeSpawnShooter: 2
-  shooter: {fileID: 2378287140987906960, guid: 4bafb4f52c6b24e008387e579da50405, type: 3}
+  shooterPrefab: {fileID: 2378287140987906960, guid: 4bafb4f52c6b24e008387e579da50405, type: 3}
+  isSpawningShooter: 1
+  timeSpawnElectricWall: 2.5
+  electricWallPrefab: {fileID: 1980796097585606209, guid: 86dc268154cf246cbbb3f3b4528867db, type: 3}
+  spawnRadiusOffScreen: 18
+  isSpawningElectricWall: 1
 --- !u!4 &641546530
 Transform:
   m_ObjectHideFlags: 0
@@ -11661,9 +11666,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hooknessActivated: 0
+  isHook: 0
   attractionSpeed: 3
   doesDamage: 0
   isDestroyableAfterImpact: 0
+  isProjectile: 0
   isWall: 1
   isVerticalWall: 1
   isHorizontalWall: 0
@@ -12072,7 +12079,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1065428930}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.768, z: 0}
+  m_LocalPosition: {x: 0, y: 0.02, z: 0}
   m_LocalScale: {x: 0.4993846, y: 0.4993846, z: 0.4993846}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -12144,7 +12151,7 @@ MonoBehaviour:
   playerInput: {fileID: 1065428935}
   timeManager: {fileID: 880712856}
   canJump: 1
-  isHooked: 0
+  playerIsHooked: 0
 --- !u!114 &1065428937
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13745,7 +13752,7 @@ ParticleSystem:
   UVModule:
     serializedVersion: 2
     enabled: 0
-    mode: 0
+    mode: 1
     timeMode: 0
     fps: 30
     frameOverTime:
@@ -17485,9 +17492,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hooknessActivated: 0
+  isHook: 0
   attractionSpeed: 3
   doesDamage: 0
   isDestroyableAfterImpact: 0
+  isProjectile: 0
   isWall: 1
   isVerticalWall: 0
   isHorizontalWall: 1
@@ -18563,9 +18572,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hooknessActivated: 0
+  isHook: 0
   attractionSpeed: 3
   doesDamage: 0
   isDestroyableAfterImpact: 0
+  isProjectile: 0
   isWall: 1
   isVerticalWall: 0
   isHorizontalWall: 1
@@ -18768,9 +18779,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hooknessActivated: 0
+  isHook: 0
   attractionSpeed: 3
   doesDamage: 0
   isDestroyableAfterImpact: 0
+  isProjectile: 0
   isWall: 1
   isVerticalWall: 1
   isHorizontalWall: 0

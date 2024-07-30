@@ -8,5 +8,5 @@ public class EnemyEntity : MonoBehaviour
     public bool isShooter;
     public bool isShooterDestroyer;
     public bool isDead = false;
-
+    public bool isElectricWall;
 }

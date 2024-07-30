@@ -10,7 +10,10 @@ public class ProjectileSpawnController : MonoBehaviour
     private GameObject projectile;
 
     [SerializeField]
-    private float timeToShoot = 3;
+    private float timeToShoot = 3f;
+
+    [SerializeField]
+    private float projectileRotationSpeed = 45f;
 
     private Vector3 playerPosition;
     private float timer = 0;
@@ -44,5 +47,6 @@ public class ProjectileSpawnController : MonoBehaviour
         Vector2 directionProjectile =
             new Vector2(direction.x, direction.y).normalized * projectileEntity.projectileSpeed;
         projectileRB.velocity = directionProjectile;
+        projectileRB.angularVelocity = projectileRotationSpeed;
     }
 }

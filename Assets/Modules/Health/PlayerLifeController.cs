@@ -56,20 +56,25 @@ public class PlayerLifeController : MonoBehaviour
 
     public bool isAlive;
 
-    private void Awake()
+    private void OnEnable()
     {
         playerCollisionController.OnCollisionEnter2DEvent += OnCollisionEnter2DEvent;
+        playerCollisionController.OnTriggerEnter2DEvent += OnTriggerEnter2DEvent;
+    }
 
+    private void OnDisable()
+    {
+        playerCollisionController.OnCollisionEnter2DEvent -= OnCollisionEnter2DEvent;
+        playerCollisionController.OnTriggerEnter2DEvent += OnTriggerEnter2DEvent;
+    }
+
+    private void Awake()
+    {
         if (!playerMovementController.enabled)
         {
             playerMovementController.EnableInput();
             playerMovementController.enabled = true;
         }
-    }
-
-    private void OnDestroy()
-    {
-        playerCollisionController.OnCollisionEnter2DEvent -= OnCollisionEnter2DEvent;
     }
 
     void Start()
@@ -110,9 +115,21 @@ public class PlayerLifeController : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter2DEvent(Collider2D other)
+    {
+        if (other.gameObject.TryGetComponent(out ObstacleEntity obstacleEntity))
+        {
+            if (obstacleEntity.doesDamage && isAlive)
+            {
+                TakeDamage();
+            }
+        }
+    }
+
     private void TakeDamage()
     {
         TimeManager.Instance.DoSlowMotion();
+        CameraManager.Instance.Shake();
         Instantiate(protectiveshield, transform.position, Quaternion.identity);
         ps.Play();
         recoveryTimer = 0;

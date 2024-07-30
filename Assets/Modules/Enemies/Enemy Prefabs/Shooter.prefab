@@ -103,6 +103,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyEntity: {fileID: 5063331148790697586}
+  electricWallSpeed: 0
+  rotationSpeed: 0
 --- !u!114 &5063331148790697586
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -119,6 +121,7 @@ MonoBehaviour:
   isShooter: 0
   isShooterDestroyer: 1
   isDead: 0
+  isElectricWall: 0
 --- !u!50 &7669503891476246492
 Rigidbody2D:
   serializedVersion: 4
@@ -292,7 +295,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 35
+      scalar: 32.51
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -731,7 +734,7 @@ ParticleSystem:
     gravityModifier:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 3
+      scalar: 7.91
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -990,7 +993,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1000
+      scalar: 744.5
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -5227,6 +5230,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectile: {fileID: 4229569373755478502, guid: 3f4bf692493f946c893752230fba0973, type: 3}
   timeToShoot: 1.5
+  projectileRotationSpeed: 150
 --- !u!114 &6737654849350222620
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5240,6 +5244,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyEntity: {fileID: 7938919972908663519}
+  electricWallSpeed: 0
+  rotationSpeed: 0
 --- !u!114 &7938919972908663519
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5256,3 +5262,4 @@ MonoBehaviour:
   isShooter: 1
   isShooterDestroyer: 0
   isDead: 0
+  isElectricWall: 0

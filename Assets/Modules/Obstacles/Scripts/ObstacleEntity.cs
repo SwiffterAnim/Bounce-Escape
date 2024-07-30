@@ -5,9 +5,11 @@ using UnityEngine;
 public class ObstacleEntity : MonoBehaviour
 {
     public bool hooknessActivated;
+    public bool isHook;
     public float attractionSpeed = 3f;
     public bool doesDamage;
     public bool isDestroyableAfterImpact;
+    public bool isProjectile;
     public bool isWall;
     public bool isVerticalWall;
     public bool isHorizontalWall;
