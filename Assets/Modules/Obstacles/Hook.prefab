@@ -101,9 +101,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hooknessActivated: 1
+  isHook: 1
   attractionSpeed: 3
   doesDamage: 0
   isDestroyableAfterImpact: 0
+  isProjectile: 0
   isWall: 0
   isVerticalWall: 0
   isHorizontalWall: 0

@@ -10,19 +10,28 @@ public class EnemyMovementController : MonoBehaviour
     [SerializeField]
     private EnemyEntity enemyEntity;
 
-    //For SHOOTER
+    //For SHOOTER----------------------------------------------------------------------
     private Animator animator;
     private float randomOffset;
     readonly string ANIMATION = "Animation";
     readonly string CLONE = "(Clone)";
 
-    //For SHOOTER DESTROYER
+    //For SHOOTER DESTROYER----------------------------------------------------------------------
     private Rigidbody2D rb;
     private float randomSignX;
     private float randomSignY;
 
+    //For ELECTRIC WALL----------------------------------------------------------------------
+    [SerializeField]
+    private float electricWallSpeed;
+
+    [SerializeField]
+    private float rotationSpeed;
+
     void Start()
     {
+        TryGetComponent<Rigidbody2D>(out rb);
+
         if (enemyEntity.isShooter)
         {
             StartShooter();
@@ -31,8 +40,23 @@ public class EnemyMovementController : MonoBehaviour
         {
             StartShooterDestroyer();
         }
+        if (enemyEntity.isElectricWall)
+        {
+            StartElectricWall();
+        }
     }
 
+    //For ELECTRIC WALL----------------------------------------------------------------------
+    private void StartElectricWall()
+    {
+        Vector3 direction = Vector3.zero - transform.position;
+
+        rb.velocity = direction * electricWallSpeed;
+        rb.angularVelocity = rotationSpeed * RandomSign();
+        //This just needs to aim towards the origin and add force to the rigid body.
+    }
+
+    //For SHOOTER----------------------------------------------------------------------
     private void StartShooter()
     {
         string enemyName = gameObject.name.Replace(CLONE, "").Trim();
@@ -45,13 +69,14 @@ public class EnemyMovementController : MonoBehaviour
         animator.Play(animationName, 0, randomOffset);
     }
 
+    //For SHOOTER DESTROYER----------------------------------------------------------------------
     private void StartShooterDestroyer()
     {
         float randomX = UnityEngine.Random.Range(-7f, 7f);
         float randomY = UnityEngine.Random.Range(-4f, 4f);
         transform.position = new Vector3(randomX, randomY, 0);
 
-        rb = GetComponent<Rigidbody2D>();
+        //rb = GetComponent<Rigidbody2D>();
         randomSignX = RandomSign();
         randomSignY = RandomSign();
 
