@@ -22,6 +22,9 @@ public class ElectricWallStarter : MonoBehaviour
     [SerializeField]
     private float maxmSize = 4f;
 
+    [SerializeField]
+    private float delayToDestroy = 17f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -53,7 +56,7 @@ public class ElectricWallStarter : MonoBehaviour
 
     private IEnumerator DestroyElectricWall()
     {
-        yield return new WaitForSeconds(17);
+        yield return new WaitForSeconds(delayToDestroy);
         Destroy(gameObject);
     }
 }

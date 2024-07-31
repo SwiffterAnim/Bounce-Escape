@@ -53,6 +53,8 @@ public class PlayerLifeController : MonoBehaviour
     private float recoveryTimer = 0;
     private int crackIndex;
     private int numberOfCrackedSprites;
+    private Color redColor = new Color(255, 0, 0, 255);
+    private Color whiteColor = new Color(255, 255, 255, 255);
 
     public bool isAlive;
 
@@ -131,18 +133,23 @@ public class PlayerLifeController : MonoBehaviour
         TimeManager.Instance.DoSlowMotion();
         CameraManager.Instance.Shake();
         Instantiate(protectiveshield, transform.position, Quaternion.identity);
-        ps.Play();
         recoveryTimer = 0;
 
         if (crackIndex + 1 > numberOfCrackedSprites)
         {
             healthAmount -= damageFullCrack;
+            var pfxMain = ps.main;
+            pfxMain.startColor = redColor;
+            ps.Play();
         }
 
         if (crackIndex < numberOfCrackedSprites)
         {
             crackIndex++;
             playerVisualController.CrackCristalBall(crackIndex);
+            var pfxMain = ps.main;
+            pfxMain.startColor = whiteColor;
+            ps.Play();
         }
 
         fillController.SetBloodDropEmissionRate(crackIndex);
@@ -193,7 +200,8 @@ public class PlayerLifeController : MonoBehaviour
         fillController.SetBloodDropEmissionRate(0);
         playerMovementController.DisableInput();
         playerMovementController.enabled = false;
-        Destroy(gameObject.GetComponent<Collider2D>()); //prob not the nicest way to do it.
+        gameObject.SetActive(false);
+        // Destroy(gameObject.GetComponent<Collider2D>()); //prob not the nicest way to do it.
         isAlive = false;
         rb.WakeUp();
         rb.isKinematic = false;

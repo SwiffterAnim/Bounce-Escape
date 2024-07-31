@@ -26,41 +26,76 @@ public class EnemySpawnManager : MonoBehaviour
 
     public bool isSpawningElectricWall;
 
-    private float timer;
+    private Coroutine shooterCoroutine;
+    private Coroutine electricWallCoroutine;
+
+    private void OnEnable()
+    {
+        PlayerLifeController.OnPlayerDiedEvent += OnPlayerDiedEvent;
+    }
+
+    private void OnDisable()
+    {
+        PlayerLifeController.OnPlayerDiedEvent -= OnPlayerDiedEvent;
+    }
+
+    private void Start()
+    {
+        shooterCoroutine = StartCoroutine(InstantiateShooterCoroutine());
+        electricWallCoroutine = StartCoroutine(InstantiateElectricWallCoroutine());
+    }
 
     private void Update()
     {
         if (PlayerManager.Instance.isAlive)
         {
-            //if Difficulty or Level = x enum whatever: Because it depends on the level which enemies spawn.
-            timer += Time.deltaTime;
-            if (timer >= timeSpawnShooter && isSpawningShooter)
+            if (!isSpawningShooter || !isSpawningElectricWall)
             {
-                timer = 0;
-                InstantiateShooter();
+                StopSpawning();
             }
-            else if (timer >= timeSpawnElectricWall && isSpawningElectricWall)
+            if (isSpawningShooter || isSpawningElectricWall)
             {
-                timer = 0;
-                InstantiateElectricWall();
+                StartSpawning();
             }
         }
     }
 
-    private void InstantiateShooter()
+    private IEnumerator InstantiateShooterCoroutine()
     {
-        Instantiate(shooterPrefab, transform.position, Quaternion.identity);
+        while (true)
+        {
+            if (isSpawningShooter)
+            {
+                yield return new WaitForSeconds(timeSpawnShooter);
+                Instantiate(shooterPrefab, transform.position, Quaternion.identity);
+            }
+            else
+            {
+                yield return null;
+            }
+        }
     }
 
-    private void InstantiateElectricWall()
+    private IEnumerator InstantiateElectricWallCoroutine()
     {
-        float randomZRotation = Random.Range(0, 180);
+        while (true)
+        {
+            if (isSpawningElectricWall)
+            {
+                float randomZRotation = Random.Range(0, 180);
 
-        Instantiate(
-            electricWallPrefab,
-            GetRandomPointOnCircle(spawnRadiusOffScreen),
-            Quaternion.Euler(0, 0, randomZRotation)
-        );
+                Instantiate(
+                    electricWallPrefab,
+                    GetRandomPointOnCircle(spawnRadiusOffScreen),
+                    Quaternion.Euler(0, 0, randomZRotation)
+                );
+                yield return new WaitForSeconds(timeSpawnElectricWall);
+            }
+            else
+            {
+                yield return null;
+            }
+        }
     }
 
     private Vector3 GetRandomPointOnCircle(float radius)
@@ -74,5 +109,36 @@ public class EnemySpawnManager : MonoBehaviour
 
         // Return the point as a Vector3 (assuming z = 0 for 2D)
         return new Vector3(x, y, 0);
+    }
+
+    private void StopSpawning()
+    {
+        if (!isSpawningShooter && shooterCoroutine != null)
+        {
+            StopCoroutine(InstantiateShooterCoroutine());
+        }
+        if (!isSpawningElectricWall && electricWallCoroutine != null)
+        {
+            StopCoroutine(InstantiateElectricWallCoroutine());
+        }
+    }
+
+    private void StartSpawning()
+    {
+        if (isSpawningShooter && shooterCoroutine == null)
+        {
+            shooterCoroutine = StartCoroutine(InstantiateShooterCoroutine());
+        }
+        if (isSpawningElectricWall && electricWallCoroutine == null)
+        {
+            electricWallCoroutine = StartCoroutine(InstantiateElectricWallCoroutine());
+        }
+    }
+
+    private void OnPlayerDiedEvent()
+    {
+        isSpawningElectricWall = false;
+        isSpawningShooter = false;
+        StopAllCoroutines();
     }
 }
